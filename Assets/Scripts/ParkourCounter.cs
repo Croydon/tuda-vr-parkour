@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Transactions;
 
 public class ParkourCounter : MonoBehaviour
 {
@@ -29,10 +30,15 @@ public class ParkourCounter : MonoBehaviour
     public Vector3 currentRespawnPos;
 
     public float timeCounter;
+    public float timeCountdown;
+    public float currentPartTimer;
+    public long startTimestamp;
+    public bool started;
     private float part1Time;
     private float part2Time;
     private float part3Time;
     public int coinCount;
+    public int previousCoinCount;
     
     private int part1Count; // 17
     private int part2Count; // 33
@@ -54,6 +60,12 @@ public class ParkourCounter : MonoBehaviour
     {
         coinCount = 0;
         timeCounter = 0.0f;
+        currentPartTimer = 0.0f;
+        timeCountdown = 2 * 60.0f; // TODO: Change to 10 Minutes for final version
+        started = false;
+        previousCoinCount = 0;
+        DateTime currentTime = DateTime.UtcNow;
+        startTimestamp = ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
         firstBanner.SetActive(false);
         secondBanner.SetActive(false);
         finalBanner.SetActive(false);
@@ -66,14 +78,11 @@ public class ParkourCounter : MonoBehaviour
         parkourStart = false;
         endTextGO.SetActive(false);
         this.selectionTaskMeasure = this.GetComponent<SelectionTaskMeasure>();
-        this.Log("start,");
     }
 
     public void Log(string message)
     {
-        DateTime currentTime = DateTime.UtcNow;
-        long unixTime = ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
-        TextWriter tw = new StreamWriter(Application.persistentDataPath + "/ParkourCounterLog-" + unixTime + ".txt", true);
+        TextWriter tw = new StreamWriter(Application.persistentDataPath + "/ParkourCounterLog-" + startTimestamp + ".txt", true);
         tw.WriteLine(System.DateTime.Now + "," + message);
         tw.Close();
     }
@@ -83,9 +92,11 @@ public class ParkourCounter : MonoBehaviour
         if (isStageChange)
         {
             isStageChange = false;
-            if (locomotionTech.stage == startBanner.name)
+            if (locomotionTech.stage == startBanner.name && timeCountdown > 0)
             {
                 parkourStart = true;
+                currentPartTimer = 0.0f;
+                endTextGO.SetActive(false);
                 startBanner.SetActive(false);
                 firstBanner.SetActive(true);
                 firstCoins.SetActive(true);
@@ -102,8 +113,10 @@ public class ParkourCounter : MonoBehaviour
                 secondCoins.SetActive(true);
                 objIX2.SetActive(true);
                 this.GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX2.transform.position;
-                part1Time = timeCounter;
-                part1Count = coinCount;
+                part1Time = currentPartTimer;
+                currentPartTimer = 0.0f;
+                part1Count = coinCount - previousCoinCount;
+                previousCoinCount = coinCount;
                 currentRespawnPos = first2SecondRespawn.position;
                 UpdateRecordText(1, part1Time, part1Count, 16);
             }
@@ -116,35 +129,69 @@ public class ParkourCounter : MonoBehaviour
                 finalCoins.SetActive(true);
                 objIX3.SetActive(true);
                 this.GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX3.transform.position;
-                part2Time = timeCounter - part1Time;
-                part2Count = coinCount - part1Count;
+                part2Time = currentPartTimer;
+                currentPartTimer = 0.0f;
+                part2Count = coinCount - previousCoinCount;
+                previousCoinCount = coinCount;
                 currentRespawnPos = second2FinalRespawn.position;
                 UpdateRecordText(2, part2Time, part2Count, 30);
             }
             else if (locomotionTech.stage == finalBanner.name)
             {
-                parkourStart = false;
                 finalCoins.SetActive(false);
                 objIX3.SetActive(false);
-                part3Time = timeCounter - (part1Time + part2Time);
-                part3Count = coinCount - (part1Count + part2Count);
+                part3Time = currentPartTimer;
+                currentPartTimer = 0.0f;
+                part3Count = coinCount - previousCoinCount;
+                previousCoinCount = coinCount;
                 UpdateRecordText(3, part3Time, part3Count, 23);
-                timeTextGO.SetActive(false);
-                coinTextGO.SetActive(false);
-                recordTextGO.SetActive(false);
+                endTextGO.GetComponent<TMP_Text>().text = "Round finished. Keep going!";
                 endTextGO.SetActive(true);
-                endTextGO.GetComponent<TMP_Text>().text = "Parkour Finished!\n" + recordText.text +
-                    "\ntotal: " + timeCounter.ToString("F1") + ", " + coinCount.ToString() + "/69";
-                Debug.Log(endTextGO.GetComponent<TMP_Text>().text);
-                endSoundEffect.Play();
+                startBanner.SetActive(true);
             }
         }
 
         if (parkourStart)
         {
-            timeCounter += Time.deltaTime;
-            timeText.text = "time: " + timeCounter.ToString("F1");
-            coinText.text = "coins: " + coinCount.ToString();
+            if (timeCountdown > 0)
+            {
+                if(started == false)
+                {
+                    this.Log("start,");
+                    started = true;
+                }
+                timeCounter += Time.deltaTime;
+                currentPartTimer += Time.deltaTime;
+                timeCountdown -= Time.deltaTime;
+                timeText.text = "time: " + timeCountdown.ToString("F1");
+                coinText.text = "coins: " + coinCount.ToString();
+            }
+            else
+            {
+                parkourStart = false;
+
+                startBanner.SetActive(false);
+                firstBanner.SetActive(false);
+                secondBanner.SetActive(false);
+                finalBanner.SetActive(false);
+                firstCoins.SetActive(false);
+                secondCoins.SetActive(false);
+                finalCoins.SetActive(false);
+                objIX2.SetActive(false);
+                objIX3.SetActive(false);
+                objIX1.SetActive(false);
+
+                timeTextGO.SetActive(false);
+                coinTextGO.SetActive(false);
+                recordTextGO.SetActive(false);
+
+                endTextGO.GetComponent<TMP_Text>().text = "Parkour Finished!\n" + recordText.text +
+                    "\ntotal: " + timeCounter.ToString("F1") + ", " + coinCount.ToString() + "/69";
+                endTextGO.SetActive(true);
+                Debug.Log(endTextGO.GetComponent<TMP_Text>().text);
+                this.Log("end,");
+                endSoundEffect.Play();
+            }
         }       
     }
 
