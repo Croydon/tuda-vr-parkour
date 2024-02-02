@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ParkourCounter : MonoBehaviour
 {
@@ -64,6 +66,16 @@ public class ParkourCounter : MonoBehaviour
         parkourStart = false;
         endTextGO.SetActive(false);
         this.selectionTaskMeasure = this.GetComponent<SelectionTaskMeasure>();
+        this.Log("start,");
+    }
+
+    public void Log(string message)
+    {
+        DateTime currentTime = DateTime.UtcNow;
+        long unixTime = ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
+        TextWriter tw = new StreamWriter(Application.persistentDataPath + "/ParkourCounterLog-" + unixTime + ".txt", true);
+        tw.WriteLine(System.DateTime.Now + "," + message);
+        tw.Close();
     }
 
     void Update()
@@ -140,6 +152,8 @@ public class ParkourCounter : MonoBehaviour
     {
         string newRecords = "loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart + "\n" +
                             "obj"  + part.ToString() + ": " + (selectionTaskMeasure.partSumTime/5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr/5).ToString("F2");
+        this.Log("stats,loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart);
+        this.Log("stats,obj" + part.ToString() + ": " + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"));
         recordText.text = recordText.text + "\n" + newRecords;
     }
 }
