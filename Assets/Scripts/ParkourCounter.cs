@@ -148,6 +148,20 @@ public class ParkourCounter : MonoBehaviour
                 endTextGO.GetComponent<TMP_Text>().text = "Round finished. Keep going!";
                 endTextGO.SetActive(true);
                 startBanner.SetActive(true);
+
+                // Re-enable all coins, specifically collected coins
+                for (int i = 0; i < firstCoins.transform.childCount; i++)
+                {
+                    firstCoins.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                for (int i = 0; i < secondCoins.transform.childCount; i++)
+                {
+                    secondCoins.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                for (int i = 0; i < finalCoins.transform.childCount; i++)
+                {
+                    finalCoins.transform.GetChild(i).gameObject.SetActive(true);
+                }
             }
         }
 
