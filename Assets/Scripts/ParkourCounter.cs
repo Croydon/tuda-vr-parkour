@@ -200,7 +200,7 @@ public class ParkourCounter : MonoBehaviour
                 recordTextGO.SetActive(false);
 
                 endTextGO.GetComponent<TMP_Text>().text = "Parkour Finished!\n" + recordText.text +
-                    "\ntotal: " + timeCounter.ToString("F1") + ", " + coinCount.ToString() + "/69";
+                    "\ntotal: " + timeCounter.ToString("F1") + ", " + coinCount.ToString();
                 endTextGO.SetActive(true);
                 Debug.Log(endTextGO.GetComponent<TMP_Text>().text);
                 this.Log("end,");
