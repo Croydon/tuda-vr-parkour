@@ -12,7 +12,6 @@
 			CGPROGRAM
 			#pragma vertex vertTriplanar
 			#pragma fragment frag
-			#pragma multi_compile_instancing
 			#include "CageCommon.cginc"
 			
 			fixed4 frag (v2fTriplanar i) : SV_Target {

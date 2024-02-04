@@ -12,7 +12,6 @@
 			CGPROGRAM
 			#pragma vertex vertFog
 			#pragma fragment frag
-			#pragma multi_compile_instancing
 			#include "CageCommon.cginc"
 			
 			fixed4 frag (v2fFog i) : SV_Target {
