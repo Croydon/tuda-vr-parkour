@@ -61,7 +61,7 @@ public class ParkourCounter : MonoBehaviour
         coinCount = 0;
         timeCounter = 0.0f;
         currentPartTimer = 0.0f;
-        timeCountdown = 2 * 60.0f; // TODO: Change to 10 Minutes for final version
+        timeCountdown = 10 * 60.0f; // TODO: Change to 10 Minutes for final version
         started = false;
         previousCoinCount = 0;
         DateTime currentTime = DateTime.UtcNow;
