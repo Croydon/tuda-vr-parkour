@@ -99,6 +99,10 @@ public class ParkourCounter : MonoBehaviour
                 endTextGO.SetActive(false);
                 startBanner.SetActive(false);
                 firstBanner.SetActive(true);
+                for (int i = 0; i < firstCoins.transform.childCount; i++)
+                {
+                    firstCoins.transform.GetChild(i).gameObject.SetActive(true);
+                }
                 firstCoins.SetActive(true);
                 objIX1.SetActive(true);
                 this.GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX1.transform.position;
@@ -110,6 +114,13 @@ public class ParkourCounter : MonoBehaviour
                 firstCoins.SetActive(false);
                 objIX1.SetActive(false);
                 secondBanner.SetActive(true);
+                for (int i = 0; i < secondCoins.transform.childCount; i++)
+                {
+                    for (int x = 0; x < secondCoins.transform.GetChild(i).transform.childCount; x++)
+                    {
+                        secondCoins.transform.GetChild(i).transform.GetChild(x).gameObject.SetActive(true);
+                    }
+                }
                 secondCoins.SetActive(true);
                 objIX2.SetActive(true);
                 this.GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX2.transform.position;
@@ -126,6 +137,10 @@ public class ParkourCounter : MonoBehaviour
                 secondCoins.SetActive(false);
                 objIX2.SetActive(false);
                 finalBanner.SetActive(true);
+                for (int i = 0; i < finalCoins.transform.childCount; i++)
+                {
+                    finalCoins.transform.GetChild(i).gameObject.SetActive(true);
+                }
                 finalCoins.SetActive(true);
                 objIX3.SetActive(true);
                 this.GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX3.transform.position;
@@ -156,7 +171,10 @@ public class ParkourCounter : MonoBehaviour
                 }
                 for (int i = 0; i < secondCoins.transform.childCount; i++)
                 {
-                    secondCoins.transform.GetChild(i).gameObject.SetActive(true);
+                    for (int x = 0; x < secondCoins.transform.GetChild(i).transform.childCount; x++)
+                    {
+                        secondCoins.transform.GetChild(i).transform.GetChild(x).gameObject.SetActive(true);
+                    }
                 }
                 for (int i = 0; i < finalCoins.transform.childCount; i++)
                 {
