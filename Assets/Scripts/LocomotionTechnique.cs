@@ -15,6 +15,8 @@ public class LocomotionTechnique : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private bool isIndexTriggerDown;
 
+    public GameObject player;
+
 
     /////////////////////////////////////////////////////////
     // These are for the game mechanism.
@@ -76,7 +78,7 @@ public class LocomotionTechnique : MonoBehaviour
                 offset = Vector3.zero;
             }
         }
-        this.transform.position = this.transform.position + (offset) * translationGain;
+        player.transform.position = player.transform.position + (offset) * translationGain;
 
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +87,7 @@ public class LocomotionTechnique : MonoBehaviour
         {
             if (parkourCounter.parkourStart)
             {
-                this.transform.position = parkourCounter.currentRespawnPos;
+                player.transform.position = parkourCounter.currentRespawnPos;
             }
         }
     }
