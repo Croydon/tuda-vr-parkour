@@ -189,7 +189,7 @@ public class ParkourCounter : MonoBehaviour
             {
                 if(started == false)
                 {
-                    this.Log("start,");
+                    this.Log("start,v"+Application.version);
                     started = true;
                 }
                 timeCounter += Time.deltaTime;
