@@ -22554,7 +22554,6 @@ MonoBehaviour:
   taskTime: 0
   taskUI: {fileID: 701425950}
   parkourCounter: {fileID: 1487194127}
-  locomotionTech: {fileID: 0}
   dataRecording: {fileID: 0}
   partSumTime: 0
   partSumErr: 0
@@ -29091,6 +29090,8 @@ MonoBehaviour:
   isLeftTriggerDown: 0
   isRightTriggerDown: 0
   player: {fileID: 1819617622}
+  leftEye: {fileID: 2030603680}
+  rightEye: {fileID: 2030603679}
   parkourCounter: {fileID: 1487194127}
   stage: 
   selectionTaskMeasure: {fileID: 1487194128}
@@ -29581,6 +29582,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1403642678}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2030603679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 126d619cf4daa52469682f85c1378b4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1983805364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2030603680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: 126d619cf4daa52469682f85c1378b4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1983805364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2030603681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030603679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead80e53296fc6244b6e5c18100c2c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VignetteShader: {fileID: 4800000, guid: 9d034fa3f535a1648b5059e6907c647d, type: 3}
+  MeshComplexity: 2
+  Falloff: 0
+  VignetteFieldOfView: 60
+  VignetteAspectRatio: 1
+  VignetteFalloffDegrees: 10
+  VignetteColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &2030603682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030603680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead80e53296fc6244b6e5c18100c2c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VignetteShader: {fileID: 4800000, guid: 9d034fa3f535a1648b5059e6907c647d, type: 3}
+  MeshComplexity: 2
+  Falloff: 0
+  VignetteFieldOfView: 60
+  VignetteAspectRatio: 1
+  VignetteFalloffDegrees: 10
+  VignetteColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &2035994461
 PrefabInstance:
   m_ObjectHideFlags: 0
