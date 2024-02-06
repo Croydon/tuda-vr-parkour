@@ -14,8 +14,30 @@ public class LocomotionTechnique : MonoBehaviour
     [SerializeField] private Vector3 startPos;
     [SerializeField] private Vector3 offset;
     [SerializeField] private bool isIndexTriggerDown;
+    [SerializeField] private bool isLeftTriggerDown;
+    [SerializeField] private bool isRightTriggerDown;
 
     public GameObject player;
+
+    public GameObject leftEye;
+
+    public GameObject rightEye;
+
+
+    private float forceBuildUp;
+
+    private float forceBuildUpFly;
+
+    private float maxForce;
+
+    private float maxForceFly;
+
+    private Vector3 flatVector;
+
+    private Vector3 tmp;
+
+    private Vector3 upVector;
+
 
 
     /////////////////////////////////////////////////////////
@@ -26,7 +48,12 @@ public class LocomotionTechnique : MonoBehaviour
     
     void Start()
     {
-        
+        maxForce = 10;
+        maxForceFly = 5;
+        forceBuildUp = 0.02f;
+        forceBuildUpFly = 0.02f;
+        flatVector = new Vector3(1,0,1);
+        upVector = new Vector3(0,1,0);
     }
 
     void Update()
@@ -34,9 +61,9 @@ public class LocomotionTechnique : MonoBehaviour
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Please implement your LOCOMOTION TECHNIQUE in this script :D.
         leftTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, leftController); 
-        rightTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, rightController); 
+        rightTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, rightController);
 
-        if (leftTriggerValue > 0.95f && rightTriggerValue > 0.95f)
+        /*if (leftTriggerValue > 0.95f && rightTriggerValue > 0.95f)
         {
             if (!isIndexTriggerDown)
             {
@@ -70,15 +97,105 @@ public class LocomotionTechnique : MonoBehaviour
                     (OVRInput.GetLocalControllerPosition(rightController) - startPos).magnitude;
             Debug.DrawRay(startPos, offset, Color.red, 0.2f);
         }
+
+        player.transform.position = player.transform.position + (offset) * translationGain;*/
+
+        offset = Vector3.zero;
+
+        if (leftTriggerValue > 0.95f)
+        {
+            parkourCounter.Log("Vignette: " +leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
+            leftEye.GetComponent<OVRVignette>().VignetteFieldOfView = 80;
+            rightEye.GetComponent<OVRVignette>().VignetteFieldOfView = 80;
+            leftEye.GetComponent<OVRVignette>().enabled = !leftEye.GetComponent<OVRVignette>().enabled;
+            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;
+
+            if (!isLeftTriggerDown)
+            {
+                isLeftTriggerDown = true;
+                forceBuildUp = 0.14f;
+            }
+            else
+            {
+                // forceBuildUp += 0.01f * Time.deltaTime;
+                if(forceBuildUp > maxForce)
+                {
+                    forceBuildUp = maxForce;
+                }
+            }
+            parkourCounter.Log("hmd.transform.forward.normalized: " + hmd.transform.forward.normalized.ToString());
+            tmp = Vector3.Scale(hmd.transform.forward.normalized,flatVector);
+            // parkourCounter.Log(tmp.ToString());
+            // tmp = Vector.Multiply(hmd.transform.forward.normalized * flatVector);
+            offset += tmp * forceBuildUp;
+
+        }
         else
+        {
+            isLeftTriggerDown = false;
+        }
+
+        // parkourCounter.Log("rightTriggerValue:" + rightTriggerValue);
+        // TODO: is my right controller damaged? often times it seems to only reach a trigger value of up to ~80 while pressing it fully
+        if (rightTriggerValue > 0.75f)
+        {
+            parkourCounter.Log("Vignette: " + leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
+            leftEye.GetComponent<OVRVignette>().VignetteFieldOfView = 40;
+            rightEye.GetComponent<OVRVignette>().VignetteFieldOfView = 40;
+            leftEye.GetComponent<OVRVignette>().enabled = !leftEye.GetComponent<OVRVignette>().enabled;
+            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;
+
+            if (!isRightTriggerDown)
+            {
+                isRightTriggerDown = true;
+                forceBuildUpFly = 0.2f;
+            }
+            else
+            {
+                // forceBuildUpFly += 0.01f * Time.deltaTime;
+                if (forceBuildUpFly > maxForceFly)
+                {
+                    forceBuildUpFly = maxForceFly;
+                }
+            }
+
+
+            // parkourCounter.Log((upVector * forceBuildUpFly).ToString());
+            parkourCounter.Log("up vector: " + (player.transform.up.normalized * forceBuildUpFly).ToString());
+            // offset += upVector * forceBuildUpFly;
+            /*parkourCounter.Log("hmd.tansform.up:");
+            parkourCounter.Log(hmd.transform.up.normalized.ToString());
+            parkourCounter.Log("player.transform.up.normalized:");
+            parkourCounter.Log(player.transform.up.normalized.ToString());*/
+            offset += player.transform.up.normalized * forceBuildUpFly;
+            // offset += hmd.transform.up.normalized * forceBuildUpFly;
+        }
+        else
+        {
+            isRightTriggerDown = false;
+        }
+
+        /*if (leftTriggerValue > 0.95f && rightTriggerValue < 0.95f)
         {
             if (isIndexTriggerDown)
             {
                 isIndexTriggerDown = false;
-                offset = Vector3.zero;
             }
+        }*/
+
+        // parkourCounter.Log("hmd forward:");
+        // parkourCounter.Log(hmd.transform.forward.normalized.ToString());
+        if(offset != Vector3.zero)
+        {
+            parkourCounter.Log("offset not zero: " + offset.ToString());
+           
         }
-        player.transform.position = player.transform.position + (offset) * translationGain;
+
+        // Really hard to change directions
+        player.GetComponent<Rigidbody>().AddForce(offset, ForceMode.Impulse);
+
+        // Would need time to figure out meanigfull values
+        // player.GetComponent<Rigidbody>().AddForce(offset, ForceMode.Acceleration);
 
 
         ////////////////////////////////////////////////////////////////////////////////
