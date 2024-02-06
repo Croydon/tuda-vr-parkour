@@ -108,10 +108,17 @@ public class LocomotionTechnique : MonoBehaviour
             selectionTaskMeasure.partSumErr = 0f;
             selectionTaskMeasure.partSumTime = 0f;
             // rotation: facing the user's entering direction
-            float tempValueY = other.transform.position.y > 0 ? 12 : 0;
-            Vector3 tmpTarget = new Vector3(hmd.transform.position.x, tempValueY, hmd.transform.position.z);
+
+            // float tempValueY = other.transform.position.y > 0 ? 12 : 0;
+            float tempValueY = player.transform.position.y;
+            // Vector3 tmpTarget = new Vector3(hmd.transform.position.x, tempValueY, hmd.transform.position.z);
+            Vector3 tmpTarget = new Vector3(player.transform.position.x, tempValueY, player.transform.position.z);
+            selectionTaskMeasure.taskUI.transform.position = new Vector3(selectionTaskMeasure.taskUI.transform.position.x, tempValueY, selectionTaskMeasure.taskUI.transform.position.z);
             selectionTaskMeasure.taskUI.transform.LookAt(tmpTarget);
             selectionTaskMeasure.taskUI.transform.Rotate(new Vector3(0, 180f, 0));
+            parkourCounter.Log("transform.position: " + other.transform.position.ToString());
+            parkourCounter.Log("hmd.transform.position: " + hmd.transform.position.ToString());
+            parkourCounter.Log("selectionTaskMeasure.taskUI.transform.position: " + selectionTaskMeasure.taskUI.transform.position.ToString());
             selectionTaskMeasure.taskStartPanel.SetActive(true);
         }
         else if (other.CompareTag("coin"))
