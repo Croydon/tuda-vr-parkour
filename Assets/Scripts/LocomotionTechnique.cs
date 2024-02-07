@@ -104,11 +104,11 @@ public class LocomotionTechnique : MonoBehaviour
 
         if (leftTriggerValue > 0.95f)
         {
-            parkourCounter.Log("Vignette: " +leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
+            /*parkourCounter.Log("Vignette: " +leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
             leftEye.GetComponent<OVRVignette>().VignetteFieldOfView = 80;
             rightEye.GetComponent<OVRVignette>().VignetteFieldOfView = 80;
             leftEye.GetComponent<OVRVignette>().enabled = !leftEye.GetComponent<OVRVignette>().enabled;
-            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;
+            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;*/
 
             if (!isLeftTriggerDown)
             {
@@ -139,11 +139,11 @@ public class LocomotionTechnique : MonoBehaviour
         // TODO: is my right controller damaged? often times it seems to only reach a trigger value of up to ~80 while pressing it fully
         if (rightTriggerValue > 0.75f)
         {
-            parkourCounter.Log("Vignette: " + leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
+            /*parkourCounter.Log("Vignette: " + leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
             leftEye.GetComponent<OVRVignette>().VignetteFieldOfView = 40;
             rightEye.GetComponent<OVRVignette>().VignetteFieldOfView = 40;
             leftEye.GetComponent<OVRVignette>().enabled = !leftEye.GetComponent<OVRVignette>().enabled;
-            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;
+            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;*/
 
             if (!isRightTriggerDown)
             {
