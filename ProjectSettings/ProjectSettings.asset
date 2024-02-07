@@ -139,9 +139,12 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: OVRTransitionAPKVersion
+  bundleVersion: 0.4
   preloadedAssets:
   - {fileID: 11400000, guid: 42289028ac6b68b48bf2f57010993ada, type: 2}
+  - {fileID: -23687297352731625, guid: d4d075abc73c05849bc966fc4a64228d, type: 2}
+  - {fileID: 11400000, guid: 853b3cf7745111f44a5a7e2c23b991d2, type: 2}
+  - {fileID: -3792200713971516313, guid: 20957cee725a76844a7f97932a342e36, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -733,7 +736,7 @@ PlayerSettings:
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel:
-    Android: 0
+    Android: 4
     EmbeddedLinux: 1
     GameCoreScarlett: 1
     GameCoreXboxOne: 1
