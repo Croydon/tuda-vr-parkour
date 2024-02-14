@@ -10,6 +10,7 @@ public class MyGrab : MonoBehaviour
     private bool isSelected;
     private GameObject selectedObj;
     public SelectionTaskMeasure selectionTaskMeasure;
+    public LocomotionTechnique locomotionTech;
 
     void Update()
     {
@@ -49,6 +50,11 @@ public class MyGrab : MonoBehaviour
         {
             selectionTaskMeasure.isTaskStart = false;
             selectionTaskMeasure.EndOneTask();
+        }
+        else if (other.CompareTag("startIntro"))
+        {
+            locomotionTech.IntroductionScene();
+            other.gameObject.SetActive(false);
         }
     }
 

@@ -45,6 +45,10 @@ public class LocomotionTechnique : MonoBehaviour
     public ParkourCounter parkourCounter;
     public string stage;
     public SelectionTaskMeasure selectionTaskMeasure;
+
+    public GameObject startingArea;
+    public GameObject startingAreaExplosion;
+    public GameObject startingAreaRadio;
     
     void Start()
     {
@@ -245,5 +249,24 @@ public class LocomotionTechnique : MonoBehaviour
             other.gameObject.SetActive(false);
         }
         // These are for the game mechanism.
+    }
+
+    public void IntroductionScene()
+    {
+        startingAreaRadio.GetComponent<AudioSource>().Play();
+        StartCoroutine(IntroductionScenePart2());
+    }
+
+    IEnumerator IntroductionScenePart2()
+    {
+        yield return new WaitForSeconds(15);
+        startingAreaExplosion.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(IntroductionSceneEnd());
+    }
+
+    IEnumerator IntroductionSceneEnd()
+    {
+        yield return new WaitForSeconds(2);
+        startingArea.SetActive(false);
     }
 }
