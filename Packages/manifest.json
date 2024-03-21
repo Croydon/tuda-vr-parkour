@@ -10,11 +10,12 @@
   ],
   "dependencies": {
     "com.meta.xr.mrutilitykit": "62.0.0",
-    "com.meta.xr.sdk.all": "62.0.0",
+    "com.meta.xr.sdk.audio": "60.0.0",
     "com.meta.xr.sdk.core": "62.0.0",
     "com.meta.xr.sdk.haptics": "62.0.0",
     "com.meta.xr.sdk.interaction": "62.0.0",
     "com.meta.xr.sdk.interaction.ovr": "62.0.0",
+    "com.meta.xr.sdk.interaction.ovr.samples": "62.0.0",
     "com.meta.xr.sdk.platform": "62.0.0",
     "com.meta.xr.simulator": "62.0.0",
     "com.unity.ai.navigation": "1.1.5",
