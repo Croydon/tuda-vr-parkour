@@ -1,4 +1,13 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Meta",
+      "url": "https://npm.developer.oculus.com",
+      "scopes": [
+        "com.meta.xr.sdk"
+      ]
+    }
+  ],
   "dependencies": {
     "com.meta.xr.mrutilitykit": "62.0.0",
     "com.meta.xr.sdk.all": "62.0.0",
