@@ -32,7 +32,7 @@ jobs:
           remove-haskell: true
           remove-docker-images: true
           remove-dotnet: true
-          remove-android: false
+          remove-android: true
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Manage CI cache
