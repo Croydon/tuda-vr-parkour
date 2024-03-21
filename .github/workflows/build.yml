@@ -1,0 +1,90 @@
+name: Build game
+
+on: [push,]
+
+# Documentation: 
+#    https://game.ci/docs/github/getting-started/
+#    https://game.ci/docs/docker/versions/
+# 
+# Unity always requires a specific license, even when a free license is enough. This also applies for CI runs. A license requires a Unity account.
+# I have created a completely new, free Unity account, that is not used for anything else except for this CI run, and which I will also delete again eventually. 
+
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      BUILD_PREFIX: vr-parkour
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - Android
+    steps:
+      - name: Free disk space
+        # We are regulary running out of available free disk space and the CI jobs fail. Let's remove pre-installed stuff we don't need.
+        uses: AdityaGarg8/remove-unwanted-software@992b394a004ec04243bde417be08b6223bbafe3d
+        with:
+          remove-haskell: true
+          remove-docker-images: true
+          remove-dotnet: true
+          remove-android: false
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Manage CI cache
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-
+            Library-
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_ACC_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_ACC_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+      - name: Set artifact name
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        run: |
+            BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
+            DATE=$(date +%Y-%m-%d)
+            GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
+            echo "ARTIFACT_NAME=${BUILD_PREFIX}-${DATE}-${BRANCH_NAME}-${GIT_HASH}-${{ matrix.targetPlatform }}" >> $GITHUB_ENV
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: build/${{ matrix.targetPlatform }}/
+          retention-days: 8
+      - name: Create release zip
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          RELEASE_BUILD_NAME=${BUILD_PREFIX}-v${VERSION}-${{ matrix.targetPlatform }}.zip
+          BUILD_DIR=build/${{ matrix.targetPlatform }}/
+          # Avoid permission errors by coping build dir
+          mkdir release
+          cp -r ${BUILD_DIR}. release/
+          # Delete Debug folder
+          rm -r release/${{ matrix.targetPlatform }}_BurstDebugInformation_DoNotShip/
+          cd release/
+          zip -r ${RELEASE_BUILD_NAME} ./
+          cd ../
+          echo "RELEASE_BUILD_NAME=release/${RELEASE_BUILD_NAME}" >> $GITHUB_ENV
+          echo "RELEASE_NAME=v${VERSION}" >> $GITHUB_ENV
+      - name: Release
+        # This is a third-party action and should be fixed to a specific git commit instead of a release version to reduce the possibility for a supply chain attack
+        uses: softprops/action-gh-release@975c1b265e11dd76618af1c374e7981f9a6ff44a
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: ${{ env.RELEASE_NAME }}
+          files: ${{ env.RELEASE_BUILD_NAME }}
