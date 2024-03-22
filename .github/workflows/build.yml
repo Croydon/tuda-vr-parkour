@@ -44,7 +44,6 @@ jobs:
             Library-${{ matrix.targetPlatform }}-
             Library-
       - name: Set artifact name
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         run: |
             BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//-/g')
             DATE=$(date +%Y-%m-%d)
@@ -66,13 +65,15 @@ jobs:
           name: ${{ env.ARTIFACT_NAME }}
           path: build/${{ matrix.targetPlatform }}/
           retention-days: 5
-      - name: Create release zip
+      - name: Name release artifact
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           VERSION=${GITHUB_REF#refs/tags/}
           RELEASE_BUILD_NAME=${BUILD_PREFIX}-v${VERSION}-${{ matrix.targetPlatform }}.apk
           BUILD_DIR=build/${{ matrix.targetPlatform }}/
-          mv ${BUILD_DIR}${ARTIFACT_NAME}.apk ${BUILD_DIR}${RELEASE_BUILD_NAME}
+          # Avoid permisson errors by copying file to new directory
+          mkdir release/
+          cp ${BUILD_DIR}${ARTIFACT_NAME}.apk release/${RELEASE_BUILD_NAME}
           echo "RELEASE_BUILD_NAME=release/${RELEASE_BUILD_NAME}" >> $GITHUB_ENV
           echo "RELEASE_NAME=v${VERSION}" >> $GITHUB_ENV
       - name: Release
