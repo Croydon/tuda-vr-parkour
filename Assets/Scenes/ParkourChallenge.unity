@@ -4838,6 +4838,7 @@ MonoBehaviour:
   HandType: 1
   _pointerPoseRoot: {fileID: 0}
   m_showState: 3
+  RayHelper: {fileID: 0}
 --- !u!114 &199426518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,6 +11972,7 @@ MonoBehaviour:
   HandType: 0
   _pointerPoseRoot: {fileID: 0}
   m_showState: 3
+  RayHelper: {fileID: 0}
 --- !u!114 &539292812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14507,7 +14509,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2019369080}
   m_Father: {fileID: 113672934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &632818536
@@ -17917,7 +17920,7 @@ MonoBehaviour:
   virtualGreenScreenApplyDepthCulling: 0
   virtualGreenScreenDepthTolerance: 0.2
   mrcActivationMode: 0
-  launchMultimodalHandsControllersOnStartup: 0
+  launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 0
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
@@ -17934,6 +17937,9 @@ MonoBehaviour:
   LateControllerUpdate: 1
   LateLatching: 0
   controllerDrivenHandPosesType: 0
+  SimultaneousHandsAndControllersEnabled: 0
+  _readOnlyWideMotionModeHandPosesEnabled: 0
+  wideMotionModeHandPosesEnabled: 0
 --- !u!114 &767736109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25022,6 +25028,85 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b9fef59fa39f0744ab9d260ec6266d0, type: 3}
+--- !u!1001 &1044233319
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1431359679}
+    m_Modifications:
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120618, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: velocitySource
+      value: 
+      objectReference: {fileID: 1819617622}
+    - target: {fileID: 4636666552361120619, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_Name
+      value: Visuals.Vignette
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e61ef2a51536d542b1b5996adb3c797, type: 3}
+--- !u!4 &1044233320 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+    type: 3}
+  m_PrefabInstance: {fileID: 1044233319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1048536026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32519,7 +32604,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1044233320}
   m_Father: {fileID: 113672934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1431359680
@@ -42848,6 +42934,7 @@ MonoBehaviour:
   m_controller: 2
   m_showState: 1
   showWhenHandsArePoweredByNaturalControllerPoses: 0
+  RayHelper: {fileID: 0}
 --- !u!114 &1970294906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43711,6 +43798,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 655706731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2019369079
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 632818535}
+    m_Modifications:
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120618, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: velocitySource
+      value: 
+      objectReference: {fileID: 1819617622}
+    - target: {fileID: 4636666552361120619, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_Name
+      value: Visuals.Vignette
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e61ef2a51536d542b1b5996adb3c797, type: 3}
+--- !u!4 &2019369080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
+    type: 3}
+  m_PrefabInstance: {fileID: 2019369079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2019416466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45020,6 +45186,7 @@ MonoBehaviour:
   m_controller: 1
   m_showState: 1
   showWhenHandsArePoweredByNaturalControllerPoses: 0
+  RayHelper: {fileID: 0}
 --- !u!114 &2058596830
 MonoBehaviour:
   m_ObjectHideFlags: 0
