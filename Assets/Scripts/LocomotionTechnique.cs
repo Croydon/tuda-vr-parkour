@@ -49,6 +49,8 @@ public class LocomotionTechnique : MonoBehaviour
     public GameObject startingArea;
     public GameObject startingAreaExplosion;
     public GameObject startingAreaRadio;
+    public GameObject leftVignette;
+    public GameObject rightVignette;
     
     void Start()
     {
@@ -58,6 +60,8 @@ public class LocomotionTechnique : MonoBehaviour
         forceBuildUpFly = 0.02f;
         flatVector = new Vector3(1,0,1);
         upVector = new Vector3(0,1,0);
+        leftVignette.SetActive(true);
+        rightVignette.SetActive(true);
     }
 
     void Update()

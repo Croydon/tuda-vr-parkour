@@ -13681,6 +13681,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 164024288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &597539189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4636666552361120619, guid: 0e61ef2a51536d542b1b5996adb3c797,
+    type: 3}
+  m_PrefabInstance: {fileID: 714879547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &597539190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4636666552361120617, guid: 0e61ef2a51536d542b1b5996adb3c797,
@@ -16971,6 +16977,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visuals.Vignette
       objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120619, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18102,6 +18113,8 @@ MonoBehaviour:
   startingArea: {fileID: 536985059}
   startingAreaExplosion: {fileID: 113930697}
   startingAreaRadio: {fileID: 155844093}
+  leftVignette: {fileID: 1938089632}
+  rightVignette: {fileID: 597539189}
 --- !u!82 &767736113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25184,6 +25197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Visuals.Vignette
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120619, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42150,6 +42168,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b9fef59fa39f0744ab9d260ec6266d0, type: 3}
+--- !u!1 &1938089632 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4636666552361120619, guid: 0e61ef2a51536d542b1b5996adb3c797,
+    type: 3}
+  m_PrefabInstance: {fileID: 1044233319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1939282412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4274511180433864, guid: 4c7e7092f360a4670bfa49b93b037495,
@@ -43496,6 +43520,8 @@ MonoBehaviour:
   startingArea: {fileID: 0}
   startingAreaExplosion: {fileID: 0}
   startingAreaRadio: {fileID: 0}
+  leftVignette: {fileID: 0}
+  rightVignette: {fileID: 0}
 --- !u!4 &1983805369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4484591312116288, guid: 126d619cf4daa52469682f85c1378b4a,
