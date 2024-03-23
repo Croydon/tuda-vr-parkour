@@ -10,8 +10,8 @@
 
   * `Assets/HQ Explisions Pack Free/`: [HQ Explosions Pack FREE](https://assetstore.unity.com/packages/vfx/particles/fire-explosions/hq-explosions-pack-free-263326)
   * `Assets/croydon/Sounds/tts/`: Generated with [Mozilla's Text-To-Speech](https://github.com/mozilla/TTS)
-  * `Assets/croydon/Images/`: Some are created with [Excalidraw ](https://github.com/excalidraw/excalidraw)
-
+  * `Assets/croydon/Images/`: Some are created with [Excalidraw](https://github.com/excalidraw/excalidraw)
+  * Package [Tilia.Visuals.Vignette.Unity](https://github.com/ExtendRealityLtd/Tilia.Visuals.Vignette.Unity) - MIT licensed
 
 ## License
 
