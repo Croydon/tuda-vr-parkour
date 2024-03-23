@@ -1,10 +1,17 @@
 {
   "scopedRegistries": [
     {
-      "name": "Meta",
+      "name": "Meta XR",
       "url": "https://npm.developer.oculus.com",
       "scopes": [
         "com.meta.xr"
+      ]
+    },
+    {
+      "name": "npmjs io.extendreality",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "io.extendreality"
       ]
     }
   ],
@@ -29,6 +36,7 @@
     "com.unity.xr.management": "4.4.1",
     "com.unity.xr.oculus": "4.1.2",
     "com.unity.xr.openxr": "1.9.1",
+    "io.extendreality.tilia.visuals.vignette.unity": "1.0.4",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
