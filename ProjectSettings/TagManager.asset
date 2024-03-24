@@ -12,6 +12,9 @@ TagManager:
   - objectInteractionTask
   - startIntro
   - radio
+  - leftHand
+  - rightHand
+  - portalEnter
   layers:
   - Default
   - TransparentFX

@@ -38,7 +38,7 @@ public class LocomotionTechnique : MonoBehaviour
 
     private Vector3 upVector;
 
-
+    public bool preventMovement;
 
     /////////////////////////////////////////////////////////
     // These are for the game mechanism.
@@ -60,16 +60,29 @@ public class LocomotionTechnique : MonoBehaviour
         forceBuildUpFly = 0.02f;
         flatVector = new Vector3(1,0,1);
         upVector = new Vector3(0,1,0);
+        preventMovement = false;
         leftVignette.SetActive(true);
         rightVignette.SetActive(true);
     }
 
     void Update()
     {
+        ////////////////////////////////////////////////////////////////////////////////
+        // These are for the game mechanism.
+        if (OVRInput.Get(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Four))
+        {
+            if (parkourCounter.parkourStart)
+            {
+                player.transform.position = parkourCounter.currentRespawnPos;
+            }
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Please implement your LOCOMOTION TECHNIQUE in this script :D.
         leftTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, leftController); 
         rightTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, rightController);
+
+        if (preventMovement == true) { return; }
 
         /*if (leftTriggerValue > 0.95f && rightTriggerValue > 0.95f)
         {
@@ -205,16 +218,6 @@ public class LocomotionTechnique : MonoBehaviour
         // Would need time to figure out meanigfull values
         // player.GetComponent<Rigidbody>().AddForce(offset, ForceMode.Acceleration);
 
-
-        ////////////////////////////////////////////////////////////////////////////////
-        // These are for the game mechanism.
-        if (OVRInput.Get(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Four))
-        {
-            if (parkourCounter.parkourStart)
-            {
-                player.transform.position = parkourCounter.currentRespawnPos;
-            }
-        }
     }
 
     void OnTriggerEnter(Collider other)
