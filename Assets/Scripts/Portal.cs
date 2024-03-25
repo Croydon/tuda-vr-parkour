@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class Portal : MonoBehaviour
+public class TaskPortal : MonoBehaviour
 {
-    public GameObject portalEnter;
-    public GameObject portalExit;
-    public SelectionTaskMeasure selectionTaskMeasure;
     public GameObject linkedPortal;
 
     /*private void OnTriggerEnter(Collider other)
