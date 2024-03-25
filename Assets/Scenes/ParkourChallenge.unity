@@ -4787,6 +4787,8 @@ GameObject:
   - component: {fileID: 199426514}
   - component: {fileID: 199426513}
   - component: {fileID: 199426512}
+  - component: {fileID: 199426520}
+  - component: {fileID: 199426519}
   m_Layer: 0
   m_Name: '[BuildingBlock] Hand Tracking right'
   m_TagString: Untagged
@@ -4960,6 +4962,47 @@ MonoBehaviour:
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
   instanceId: 783a5ee5-1a1a-422f-9b45-6da10f1f1f2f
   version: 1
+--- !u!114 &199426519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199426510}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 1
+  handTracking: {fileID: 1970294903}
+  isInPortal: 0
+  portal: {fileID: 0}
+--- !u!64 &199426520
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199426510}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &200122117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6124,6 +6167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264992678}
   - component: {fileID: 264992679}
+  - component: {fileID: 264992680}
   m_Layer: 0
   m_Name: OculusTouchForQuest2RightModel
   m_TagString: Untagged
@@ -6170,6 +6214,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &264992680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264992677}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &265004454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407752, guid: b75d513df2c5cdb408d4a022c98cf202,
@@ -8426,6 +8489,7 @@ GameObject:
   - component: {fileID: 393228980}
   - component: {fileID: 393228979}
   - component: {fileID: 393228982}
+  - component: {fileID: 393228983}
   m_Layer: 0
   m_Name: Portal Blue
   m_TagString: portalEnter
@@ -8462,7 +8526,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8539,6 +8603,33 @@ MonoBehaviour:
   portalExit: {fileID: 1020845145}
   selectionTaskMeasure: {fileID: 1487194128}
   linkedPortal: {fileID: 1020845145}
+--- !u!54 &393228983
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393228977}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1001 &396294005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8926,6 +9017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415248310}
   - component: {fileID: 415248311}
+  - component: {fileID: 415248312}
   m_Layer: 0
   m_Name: MetaQuestTouchPro_Right
   m_TagString: Untagged
@@ -8973,6 +9065,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &415248312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415248309}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1 &418203539
 GameObject:
   m_ObjectHideFlags: 0
@@ -12334,6 +12445,8 @@ GameObject:
   - component: {fileID: 539292808}
   - component: {fileID: 539292807}
   - component: {fileID: 539292806}
+  - component: {fileID: 539292814}
+  - component: {fileID: 539292813}
   m_Layer: 0
   m_Name: '[BuildingBlock] Hand Tracking left'
   m_TagString: Untagged
@@ -12507,6 +12620,47 @@ MonoBehaviour:
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
   instanceId: 9578b9b7-270e-4193-b2af-ec10d576d8d0
   version: 1
+--- !u!114 &539292813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539292804}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 1
+  handTracking: {fileID: 2058596827}
+  isInPortal: 0
+  portal: {fileID: 0}
+--- !u!64 &539292814
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539292804}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!4 &539385135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010915038424, guid: 6b9fef59fa39f0744ab9d260ec6266d0,
@@ -16303,6 +16457,10 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 0}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!135 &665256966
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20914,6 +21072,10 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 0}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!135 &812330799
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21778,6 +21940,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848912839}
   - component: {fileID: 848912840}
+  - component: {fileID: 848912841}
   m_Layer: 0
   m_Name: MetaQuestTouchPro_Left
   m_TagString: Untagged
@@ -21825,6 +21988,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &848912841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848912838}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1 &849029908
 GameObject:
   m_ObjectHideFlags: 0
@@ -21835,6 +22017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849029909}
   - component: {fileID: 849029910}
+  - component: {fileID: 849029911}
   m_Layer: 0
   m_Name: OculusTouchForQuestAndRiftS_Left
   m_TagString: Untagged
@@ -21881,6 +22064,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &849029911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849029908}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &849762201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4507059566585778, guid: a27d6e7d56bdc84479be345a168e6c70,
@@ -23884,6 +24086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942394774}
   - component: {fileID: 942394775}
+  - component: {fileID: 942394776}
   m_Layer: 0
   m_Name: right_touch_controller_model_skel
   m_TagString: Untagged
@@ -23929,6 +24132,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &942394776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942394773}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &943503322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011763230356, guid: 0df5765acbf5842f38119a21a68f5eec,
@@ -24186,6 +24408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 948059523}
   - component: {fileID: 948059524}
+  - component: {fileID: 948059525}
   m_Layer: 0
   m_Name: OculusTouchForQuest2LeftModel
   m_TagString: Untagged
@@ -24232,6 +24455,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &948059525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948059522}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &950821260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25899,6 +26141,7 @@ GameObject:
   - component: {fileID: 1020845149}
   - component: {fileID: 1020845148}
   - component: {fileID: 1020845147}
+  - component: {fileID: 1020845150}
   m_Layer: 0
   m_Name: Portal Orange
   m_TagString: portalEnter
@@ -25996,6 +26239,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020845145}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1020845150
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020845145}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!4 &1021461635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4958913941910646, guid: f4f82206765cef54ca8f19ce34136e8a,
@@ -28197,6 +28467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119808849}
   - component: {fileID: 1119808850}
+  - component: {fileID: 1119808851}
   m_Layer: 0
   m_Name: MetaQuestTouchPlus_Left
   m_TagString: Untagged
@@ -28243,6 +28514,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1119808851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119808848}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &1120933120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4099447961065320, guid: d0fb19b74a6974b988756d6b0c6351e0,
@@ -28999,6 +29289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1153998492}
   - component: {fileID: 1153998493}
+  - component: {fileID: 1153998494}
   m_Layer: 0
   m_Name: left_touch_controller_model_skel
   m_TagString: Untagged
@@ -29044,6 +29335,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1153998494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153998491}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1 &1154039736
 GameObject:
   m_ObjectHideFlags: 0
@@ -31534,6 +31844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306188486}
   - component: {fileID: 1306188487}
+  - component: {fileID: 1306188488}
   m_Layer: 0
   m_Name: MetaQuestTouchPlus_Right
   m_TagString: Untagged
@@ -31580,6 +31891,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1306188488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306188485}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &1306264614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4755125321900414, guid: ad9d3c1bf87264ed8a89c188f2c1018c,
@@ -32262,6 +32592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340227633}
   - component: {fileID: 1340227634}
+  - component: {fileID: 1340227635}
   m_Layer: 0
   m_Name: right_touch_controller_model_skel
   m_TagString: Untagged
@@ -32307,6 +32638,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1340227635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340227632}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &1341754395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33369,6 +33719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398213811}
   - component: {fileID: 1398213812}
+  - component: {fileID: 1398213813}
   m_Layer: 0
   m_Name: OculusTouchForQuestAndRiftS_Right
   m_TagString: Untagged
@@ -33415,6 +33766,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1398213813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398213810}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &1400008041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36625,6 +36995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562148772}
   - component: {fileID: 1562148773}
+  - component: {fileID: 1562148774}
   m_Layer: 0
   m_Name: MetaQuestTouchPlus_Left
   m_TagString: Untagged
@@ -36671,6 +37042,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1562148774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562148771}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &1563630182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7597839365259282264, guid: 2700c7e7782f9b34eb565c9fa335fa5e,
@@ -37729,6 +38119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1610156936}
   - component: {fileID: 1610156937}
+  - component: {fileID: 1610156938}
   m_Layer: 0
   m_Name: left_touch_controller_model_skel
   m_TagString: Untagged
@@ -37774,6 +38165,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1610156938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610156935}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &1615171583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010915038424, guid: 6b9fef59fa39f0744ab9d260ec6266d0,
@@ -38900,6 +39310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662857358}
   - component: {fileID: 1662857359}
+  - component: {fileID: 1662857360}
   m_Layer: 0
   m_Name: OculusTouchForQuest2LeftModel
   m_TagString: Untagged
@@ -38946,6 +39357,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1662857360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662857357}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &1663035648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39078,6 +39508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664505343}
   - component: {fileID: 1664505344}
+  - component: {fileID: 1664505345}
   m_Layer: 0
   m_Name: MetaQuestTouchPlus_Right
   m_TagString: Untagged
@@ -39124,6 +39555,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1664505345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664505342}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 1
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &1666321089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42976,6 +43426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849952327}
   - component: {fileID: 1849952328}
+  - component: {fileID: 1849952329}
   m_Layer: 0
   m_Name: MetaQuestTouchPro_Left
   m_TagString: Untagged
@@ -43023,6 +43474,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1849952329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849952326}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1 &1850304717
 GameObject:
   m_ObjectHideFlags: 0
@@ -45883,6 +46353,10 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!135 &1970294908
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -46897,6 +47371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021347401}
   - component: {fileID: 2021347402}
+  - component: {fileID: 2021347403}
   m_Layer: 0
   m_Name: OculusTouchForQuestAndRiftS_Right
   m_TagString: Untagged
@@ -46943,6 +47418,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2021347403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021347400}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &2021750078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47527,6 +48021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2047844673}
   - component: {fileID: 2047844674}
+  - component: {fileID: 2047844675}
   m_Layer: 0
   m_Name: MetaQuestTouchPro_Right
   m_TagString: Untagged
@@ -47574,6 +48069,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2047844675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047844672}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &2048128840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48165,6 +48679,10 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!135 &2058596832
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -48894,6 +49412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083434687}
   - component: {fileID: 2083434688}
+  - component: {fileID: 2083434689}
   m_Layer: 0
   m_Name: OculusTouchForQuest2RightModel
   m_TagString: Untagged
@@ -48940,6 +49459,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2083434689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083434686}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!4 &2084705167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3942613375915263889, guid: 6b3c85587dc0a514bbf5da8ff3106582,
@@ -49695,6 +50233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2110473413}
   - component: {fileID: 2110473414}
+  - component: {fileID: 2110473415}
   m_Layer: 0
   m_Name: OculusTouchForQuestAndRiftS_Left
   m_TagString: Untagged
@@ -49741,6 +50280,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2110473415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110473412}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: 2
+  selectionTaskMeasure: {fileID: 1487194128}
+  locomotionTech: {fileID: 767736112}
+  isHand: 0
+  handTracking: {fileID: 0}
+  isInPortal: 0
+  portal: {fileID: 0}
 --- !u!1001 &2111643768
 PrefabInstance:
   m_ObjectHideFlags: 0
