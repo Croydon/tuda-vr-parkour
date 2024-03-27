@@ -11,11 +11,10 @@ public class MyGrab : MonoBehaviour
     private GameObject selectedObj;
     public SelectionTaskMeasure selectionTaskMeasure;
     public LocomotionTechnique locomotionTech;
-    // public bool isPortalExitHand = false;
-    // public GameObject handTracking;
     public bool isInPortal = false;
     private GameObject portal;
     private Vector3 portalOffset;
+    private Quaternion relativeRot;
 
     void Update()
     {
@@ -62,10 +61,10 @@ public class MyGrab : MonoBehaviour
 
             // // Calculate relative rotation from child.transform.rotation to other.transform.rotation
             // // This math was suggeted by GitHub Copilot
-            // Quaternion relativeRot = Quaternion.Inverse(other.transform.rotation) * transform.rotation;
+            relativeRot = Quaternion.Inverse(other.transform.rotation) * transform.rotation;
 
             // // Set rotation to the same relative rotation in relation to the linkedPortal
-            // transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
+            transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
         }
 
         if (other.gameObject.CompareTag("objectT"))
@@ -95,7 +94,7 @@ public class MyGrab : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        else if (other.gameObject.CompareTag("objectT"))
+        if (other.gameObject.CompareTag("objectT"))
         {
             isInCollider = false;
             selectedObj = null;
