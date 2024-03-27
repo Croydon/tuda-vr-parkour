@@ -11,10 +11,10 @@ public class MyGrab : MonoBehaviour
     private GameObject selectedObj;
     public SelectionTaskMeasure selectionTaskMeasure;
     public LocomotionTechnique locomotionTech;
-    public bool isHand = false;
-    public GameObject handTracking;
+    // public bool isPortalExitHand = false;
+    // public GameObject handTracking;
     public bool isInPortal = false;
-    public GameObject portal;
+    private GameObject portal;
     private Vector3 portalOffset;
 
     void Update()
@@ -42,31 +42,6 @@ public class MyGrab : MonoBehaviour
         return boxCollider.bounds.Contains(position);
     }
 
-    void FixedUpdate()
-    {
-        if (isInPortal)
-        {
-            Vector3 physicalPosition = transform.position - portalOffset;
-
-            selectionTaskMeasure.parkourCounter.Log("physicalPosition: " + physicalPosition.ToString());
-            selectionTaskMeasure.parkourCounter.Log("portalColliderPos: " + portal.GetComponent<BoxCollider>().transform.position.ToString());
-            selectionTaskMeasure.parkourCounter.Log("BoxCollider bounds: " + portal.GetComponent<BoxCollider>().bounds);
-            selectionTaskMeasure.parkourCounter.timeText.text = physicalPosition.ToString() + "\n -- " + portal.GetComponent<BoxCollider>().transform.position.ToString();
-
-
-            // Check if the controler is within the collider of the portal
-            BoxCollider targetBox = portal.GetComponent<BoxCollider>();
-            bool isInside = IsPositionInsideBoxCollider(physicalPosition, targetBox);
-            selectionTaskMeasure.parkourCounter.Log("isInside: " + isInside.ToString());
-
-            if(!isInside)
-            {
-                isInPortal = false;
-                portal = null;
-                ExitPortal();
-            }
-        }
-    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("portalEnter") && !isInPortal)
@@ -120,10 +95,6 @@ public class MyGrab : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("portalEnter"))
-        {
-            // ExitPortal();
-        }
         else if (other.gameObject.CompareTag("objectT"))
         {
             isInCollider = false;
@@ -131,8 +102,11 @@ public class MyGrab : MonoBehaviour
         }
     }
 
-    void ExitPortal()
+    public void ExitPortal()
     {
+        isInPortal = false;
+        portal = null;
+
         selectionTaskMeasure.scoreText.text = "OnTriggerExit";
 
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit before local pos: " + transform.localPosition.ToString());

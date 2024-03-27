@@ -4977,10 +4977,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 1
-  handTracking: {fileID: 1970294903}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!64 &199426520
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6122,10 +6119,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &265004454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407752, guid: b75d513df2c5cdb408d4a022c98cf202,
@@ -8348,8 +8342,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393228977}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.3420201, z: -0, w: 0.9396927}
-  m_LocalPosition: {x: -0.479, y: 2, z: 0.5999999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.168, y: 2.01, z: 0.564}
   m_LocalScale: {x: 2, y: 2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8358,7 +8352,7 @@ Transform:
   - {fileID: 1774406276}
   - {fileID: 741886203}
   m_Father: {fileID: 701425951}
-  m_LocalEulerAnglesHint: {x: 0, y: -40, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &393228979
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8920,10 +8914,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1 &418203539
 GameObject:
   m_ObjectHideFlags: 0
@@ -12468,10 +12459,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 1
-  handTracking: {fileID: 2058596827}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!64 &539292814
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13765,6 +13753,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2058596828}
+  - {fileID: 1433359936}
   m_Father: {fileID: 541573343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &585672076
@@ -16177,10 +16166,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 0}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!135 &665256966
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17050,6 +17036,101 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 445534762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &703606990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703606991}
+  - component: {fileID: 703606994}
+  - component: {fileID: 703606993}
+  - component: {fileID: 703606992}
+  m_Layer: 6
+  m_Name: Portal Exit Tracking Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &703606991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703606990}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 872391740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &703606992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703606990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c368ddca73878f3468c811d6a41854c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerInPortal: {fileID: 1970294907}
+--- !u!135 &703606993
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703606990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &703606994
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703606990}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -20454,10 +20535,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 0}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!135 &812330799
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21351,10 +21429,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1 &849029908
 GameObject:
   m_ObjectHideFlags: 0
@@ -21427,10 +21502,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &849762201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4507059566585778, guid: a27d6e7d56bdc84479be345a168e6c70,
@@ -21848,6 +21920,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1970294904}
+  - {fileID: 703606991}
   m_Father: {fileID: 1268334244}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &875124798
@@ -23495,10 +23568,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &943503322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011763230356, guid: 0df5765acbf5842f38119a21a68f5eec,
@@ -23818,10 +23888,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &950821260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27776,10 +27843,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &1120933120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4099447961065320, guid: d0fb19b74a6974b988756d6b0c6351e0,
@@ -28597,10 +28661,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1 &1154039736
 GameObject:
   m_ObjectHideFlags: 0
@@ -31153,10 +31214,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &1306264614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4755125321900414, guid: ad9d3c1bf87264ed8a89c188f2c1018c,
@@ -31794,10 +31852,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &1341754395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32922,10 +32977,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &1400008041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33933,6 +33985,101 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 475257294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1433359935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433359936}
+  - component: {fileID: 1433359939}
+  - component: {fileID: 1433359938}
+  - component: {fileID: 1433359937}
+  m_Layer: 6
+  m_Name: Portal Exit Tracking Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1433359936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433359935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 581541391}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1433359937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433359935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c368ddca73878f3468c811d6a41854c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerInPortal: {fileID: 2058596831}
+--- !u!135 &1433359938
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433359935}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1433359939
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433359935}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1436512110 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4958913941910646, guid: f4f82206765cef54ca8f19ce34136e8a,
@@ -35962,10 +36109,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &1563630182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7597839365259282264, guid: 2700c7e7782f9b34eb565c9fa335fa5e,
@@ -36874,10 +37018,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &1615171583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010915038424, guid: 6b9fef59fa39f0744ab9d260ec6266d0,
@@ -38066,10 +38207,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &1663035648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38264,10 +38402,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &1666321089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38436,7 +38571,7 @@ Transform:
   m_GameObject: {fileID: 1672308577}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.38268343, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.702, y: 1.063, z: 0.381}
+  m_LocalPosition: {x: -1.153, y: 1.063, z: 0.364}
   m_LocalScale: {x: 0.6, y: 0.3, z: 0.050000004}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41931,10 +42066,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &1854854245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4755125321900414, guid: ad9d3c1bf87264ed8a89c188f2c1018c,
@@ -44742,10 +44874,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!135 &1970294908
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -45822,10 +45951,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &2021750078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46473,10 +46599,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &2048128840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47068,10 +47191,7 @@ MonoBehaviour:
   controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!135 &2058596832
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -47863,10 +47983,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!4 &2084705167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3942613375915263889, guid: 6b3c85587dc0a514bbf5da8ff3106582,
@@ -48684,10 +48801,7 @@ MonoBehaviour:
   controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
   locomotionTech: {fileID: 767736112}
-  isHand: 0
-  handTracking: {fileID: 0}
   isInPortal: 0
-  portal: {fileID: 0}
 --- !u!1001 &2111643768
 PrefabInstance:
   m_ObjectHideFlags: 0
