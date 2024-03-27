@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-// using System.Numerics;
 using UnityEngine;
 
 public class MyGrab : MonoBehaviour
 {
     public OVRInput.Controller controller;
-    /*public OVRInput.Controller controllerRight = OVRInput.Controller.RTouch;
-    public OVRInput.Controller controllerLeft = OVRInput.Controller.RTouch;*/
     private float triggerValue;
     private bool isInCollider;
     private bool isSelected;
@@ -19,8 +16,6 @@ public class MyGrab : MonoBehaviour
     public bool isInPortal = false;
     public GameObject portal;
     private Vector3 portalOffset;
-    private Vector3 portalEnterPos;
-    private TaskPortal activePortalComponent;
 
     void Update()
     {
@@ -41,13 +36,9 @@ public class MyGrab : MonoBehaviour
         }
     }
 
+    // make sure to use global coordinates for this function
     public bool IsPositionInsideBoxCollider(Vector3 position, BoxCollider boxCollider)
     {
-        // Convert the position to the boxCollider's local space
-        // Vector3 localPosition = boxCollider.transform.InverseTransformPoint(position);
-
-        // Bounds localBounds = new Bounds(boxCollider.center, boxCollider.size);
-
         return boxCollider.bounds.Contains(position);
     }
 
@@ -55,25 +46,11 @@ public class MyGrab : MonoBehaviour
     {
         if (isInPortal)
         {
-            // Get the controller's local position
-            // Vector3 localPosition = OVRInput.GetLocalControllerPosition(controller);
-            // Vector3 localPosition = OVRInput.GetLocalControllerPosition(controller);
-            // Convert the controller's local position to world coordinates
-            // Vector3 worldPosition = transform.TransformPoint(localPosition);
-
-            // Get physical controler position mapped to virtual
-            // Basically virtual plus the portal offset
-            // Vector3 physicalPosition = transform.position - portalOffset;
-
-            // calculate relative position from controller to linkedPortal position
-            Vector3 relativePos = transform.position - activePortalComponent.linkedPortal.transform.position;
-
-            // set controller position to the same relative position from portalEnterPos
-            Vector3 physicalPosition = portalEnterPos + relativePos;
-
+            Vector3 physicalPosition = transform.position - portalOffset;
 
             selectionTaskMeasure.parkourCounter.Log("physicalPosition: " + physicalPosition.ToString());
             selectionTaskMeasure.parkourCounter.Log("portalColliderPos: " + portal.GetComponent<BoxCollider>().transform.position.ToString());
+            selectionTaskMeasure.parkourCounter.Log("BoxCollider bounds: " + portal.GetComponent<BoxCollider>().bounds);
             selectionTaskMeasure.parkourCounter.timeText.text = physicalPosition.ToString() + "\n -- " + portal.GetComponent<BoxCollider>().transform.position.ToString();
 
 
@@ -81,7 +58,6 @@ public class MyGrab : MonoBehaviour
             BoxCollider targetBox = portal.GetComponent<BoxCollider>();
             bool isInside = IsPositionInsideBoxCollider(physicalPosition, targetBox);
             selectionTaskMeasure.parkourCounter.Log("isInside: " + isInside.ToString());
-            // bool isInside = Physics.CheckBox(physicalPosition, targetBox.size / 2, targetBox.transform.rotation, -1, QueryTriggerInteraction.Collide);
 
             if(!isInside)
             {
@@ -95,63 +71,26 @@ public class MyGrab : MonoBehaviour
     {
         if (other.CompareTag("portalEnter") && !isInPortal)
         {
+            // TODO: FIXME: When both controllers where in the portal, one gets pulled out, the movement is currently unblocked
+            // using transform.parent instead of transform does not work unfortunately
             locomotionTech.preventMovement = true;
             isInPortal = true;
             portal = other.gameObject;
 
             selectionTaskMeasure.scoreText.text = "OnTriggerEnter";
-            // selectionTaskMeasure.startPanelText.text = "OnTriggerEnter";
 
-            // transform.position = other.GetComponent<TaskPortal>().linkedPortal.transform.position;
-            // calculate relative position from transform.position to other.transform.position
-            // Vector3 relativePos = transform.position - other.transform.position;
+            portalOffset = other.GetComponent<TaskPortal>().linkedPortal.transform.position - other.transform.position;
+            selectionTaskMeasure.parkourCounter.Log("transform.position: " + transform.position.ToString());
+            selectionTaskMeasure.parkourCounter.Log("transform.parent.position: " + transform.parent.position.ToString());
+            transform.position = transform.position + portalOffset;
+            selectionTaskMeasure.parkourCounter.Log("transform.parent.position new: " + transform.parent.position.ToString());
 
-            /*for (int i = 0; i < transform.childCount; i++)
-            {
-                GameObject child = transform.GetChild(i).gameObject;
+            // // Calculate relative rotation from child.transform.rotation to other.transform.rotation
+            // // This math was suggeted by GitHub Copilot
+            // Quaternion relativeRot = Quaternion.Inverse(other.transform.rotation) * transform.rotation;
 
-                selectionTaskMeasure.parkourCounter.Log("OnTriggerEnter pos: " + i + " " + child.transform.position.ToString());
-                selectionTaskMeasure.parkourCounter.Log("OnTriggerEnter: rot " + i + " " + child.transform.rotation.ToString());
-                selectionTaskMeasure.parkourCounter.Log("OnTriggerEnter local pos: " + i + " " + child.transform.localPosition.ToString());
-                selectionTaskMeasure.parkourCounter.Log("OnTriggerEnter: local rot " + i + " " + child.transform.localRotation.ToString());
-
-                // // set position to the same relativ position from linkedPortal.transform.position
-                // child.transform.localPosition = other.GetComponent<TaskPortal>().linkedPortal.transform.position + relativePos;
-                // // adjust rotation to the same as linkedPortal
-                // child.transform.localRotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation;
-
-                // calculate relative position from child.transform.position to other.transform.position
-                Vector3 relativePos = child.transform.position - other.transform.position;
-
-                // set position to the same relative position from linkedPortal.transform.position
-                child.transform.position = other.GetComponent<TaskPortal>().linkedPortal.transform.position + relativePos;
-
-                // Calculate relative rotation from child.transform.rotation to other.transform.rotation
-                // This math was suggeted by GitHub Copilot
-                Quaternion relativeRot = Quaternion.Inverse(other.transform.rotation) * child.transform.rotation;
-
-                // Set rotation to the same relative rotation from linkedPortal.transform.rotation
-                child.transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
-
-                // child.GetComponent<MyGrab>().enabled = true;
-            }*/
-
-            // calculate relative position from controller to portal position
-            Vector3 relativePos = transform.position - other.transform.position;
-            portalEnterPos = other.transform.position;
-            portalOffset = relativePos;
-            activePortalComponent = other.GetComponent<TaskPortal>();
-
-            // set controller position to the same relative position from linkedPortal.transform.position
-            transform.position = other.GetComponent<TaskPortal>().linkedPortal.transform.position + relativePos;
-
-            // Calculate relative rotation from child.transform.rotation to other.transform.rotation
-            // This math was suggeted by GitHub Copilot
-            Quaternion relativeRot = Quaternion.Inverse(other.transform.rotation) * transform.rotation;
-
-            // Set rotation to the same relative rotation in relation to the linkedPortal
-            transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
-
+            // // Set rotation to the same relative rotation in relation to the linkedPortal
+            // transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
         }
 
         if (other.gameObject.CompareTag("objectT"))
@@ -195,25 +134,13 @@ public class MyGrab : MonoBehaviour
     void ExitPortal()
     {
         selectionTaskMeasure.scoreText.text = "OnTriggerExit";
-        // selectionTaskMeasure.startPanelText.text = "OnTriggerExit";
 
-        /*
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            GameObject child = transform.GetChild(i).gameObject;
-            child.transform.localPosition = new Vector3(0, 0, 0);
-            child.transform.localRotation = Quaternion.identity;
-            selectionTaskMeasure.parkourCounter.Log("OnTriggerExit local pos: " + i + " " + child.transform.localPosition.ToString());
-            selectionTaskMeasure.parkourCounter.Log("OnTriggerExit: local rot " + i + " " + child.transform.localRotation.ToString());
-
-            // child.GetComponent<MyGrab>().enabled = false;
-        }*/
-
+        selectionTaskMeasure.parkourCounter.Log("OnTriggerExit before local pos: " + transform.localPosition.ToString());
+        selectionTaskMeasure.parkourCounter.Log("OnTriggerExit before : local rot " + transform.localRotation.ToString());
         transform.localPosition = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.identity;
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit local pos: " + transform.localPosition.ToString());
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit: local rot " + transform.localRotation.ToString());
-
 
         locomotionTech.preventMovement = false;
     }
