@@ -68,7 +68,7 @@ git clone https://github.com/wenjietseng/VR-locomotion-parkour.git
 
 #### Cybersickness reduction
 
-- [Ginger VR](https://github.com/angsamuel/GingerVR) Note: This repo seems not being maintained anymore. Still, it can be a reference for implementing your cybersickness reduction technique.
+- ~~[Ginger VR](https://github.com/angsamuel/GingerVR) Note: This repo seems not being maintained anymore. Still, it can be a reference for implementing your cybersickness reduction technique.~~
 
 #### Scene
 
