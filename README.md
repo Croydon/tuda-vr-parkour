@@ -13,7 +13,7 @@
   * `Assets/croydon/Images/`:
     * Some are created with [Excalidraw](https://github.com/excalidraw/excalidraw)
       * `study_facility_wall.png`
-    * `lock.png`: [cc0-icons](https://github.com/cc0-icons/cc0-icons)
+    * `lock.png`: [cc0-icons](https://cc0-icons.jonh.eu/)
   * Package [Tilia.Visuals.Vignette.Unity](https://github.com/ExtendRealityLtd/Tilia.Visuals.Vignette.Unity) - MIT licensed
 
 ## License
