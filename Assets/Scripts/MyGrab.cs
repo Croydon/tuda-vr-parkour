@@ -71,6 +71,9 @@ public class MyGrab : MonoBehaviour
     {
         if (other.CompareTag("portalEnter") && !isInPortal)
         {
+            // Only if there is an active exit portal, the controllers should be offsetted
+            if (!other.GetComponent<TaskPortal>().linkedPortal.activeSelf) { return; }
+
             // TODO: FIXME: When both controllers where in the portal, one gets pulled out, the movement is currently unblocked
             // using transform.parent instead of transform does not work unfortunately
             locomotionTech.preventMovement = true;
