@@ -33,12 +33,38 @@ public class MyGrab : MonoBehaviour
                 selectedObj.transform.parent.transform.parent = null;
             }
         }
+
+        if(isInPortal)
+        {
+            OffsettingVisibleController();
+        }
     }
 
     // make sure to use global coordinates for this function
     public bool IsPositionInsideBoxCollider(Vector3 position, BoxCollider boxCollider)
     {
         return boxCollider.bounds.Contains(position);
+    }
+
+    private void OffsettingVisibleController()
+    {
+        Collider other = portal.GetComponent<Collider>();
+
+
+        portalOffset = other.GetComponent<TaskPortal>().linkedPortal.transform.position - other.transform.position;
+        // + other.GetComponent<TaskPortal>().linkedPortal.transform.forward * 0.1f
+
+        // Calculate relative rotation from transform.parent.rotation to other.transform.rotation
+        // This math was suggeted by GitHub Copilot
+        relativeRot = Quaternion.Inverse(other.transform.rotation) * transform.parent.rotation;
+
+        // selectionTaskMeasure.parkourCounter.Log("transform.position: " + transform.position.ToString());
+        // selectionTaskMeasure.parkourCounter.Log("transform.parent.position: " + transform.parent.position.ToString());
+        transform.position = transform.parent.position + portalOffset;
+        // selectionTaskMeasure.parkourCounter.Log("transform.parent.position new: " + transform.parent.position.ToString());
+
+        // Set rotation to the same relative rotation in relation to the linkedPortal
+        transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
     }
 
     void OnTriggerEnter(Collider other)
@@ -52,19 +78,7 @@ public class MyGrab : MonoBehaviour
             portal = other.gameObject;
 
             selectionTaskMeasure.scoreText.text = "OnTriggerEnter";
-
-            portalOffset = other.GetComponent<TaskPortal>().linkedPortal.transform.position - other.transform.position;
-            selectionTaskMeasure.parkourCounter.Log("transform.position: " + transform.position.ToString());
-            selectionTaskMeasure.parkourCounter.Log("transform.parent.position: " + transform.parent.position.ToString());
-            transform.position = transform.position + portalOffset;
-            selectionTaskMeasure.parkourCounter.Log("transform.parent.position new: " + transform.parent.position.ToString());
-
-            // // Calculate relative rotation from child.transform.rotation to other.transform.rotation
-            // // This math was suggeted by GitHub Copilot
-            relativeRot = Quaternion.Inverse(other.transform.rotation) * transform.rotation;
-
-            // // Set rotation to the same relative rotation in relation to the linkedPortal
-            transform.rotation = other.GetComponent<TaskPortal>().linkedPortal.transform.rotation * relativeRot;
+            // offsettingVisibleController();
         }
 
         if (other.gameObject.CompareTag("objectT"))
@@ -105,6 +119,8 @@ public class MyGrab : MonoBehaviour
     {
         isInPortal = false;
         portal = null;
+        portalOffset = new Vector3(0, 0, 0);
+        relativeRot = Quaternion.identity;
 
         selectionTaskMeasure.scoreText.text = "OnTriggerExit";
 
