@@ -28,6 +28,11 @@ public class SelectionTaskMeasure : MonoBehaviour
     public float partSumTime;
     public float partSumErr;
 
+    public GameObject portalEnter;
+    public GameObject portalExit;
+
+    public int tasksNum = 5;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +43,8 @@ public class SelectionTaskMeasure : MonoBehaviour
         donePanel.SetActive(false);
         scoreText.text = "Part" + part.ToString();
         taskStartPanel.SetActive(false);
+        portalEnter.SetActive(false);
+        portalExit.SetActive(false);
     }
 
     // Update is called once per frame
@@ -61,8 +68,29 @@ public class SelectionTaskMeasure : MonoBehaviour
         taskTime = 0f;
         taskStartPanel.SetActive(false);
         donePanel.SetActive(true);
+        portalExit.SetActive(true);
+
+        /* 
         objectTStartingPos = taskUI.transform.position + taskUI.transform.forward * 0.5f + taskUI.transform.up * 0.75f;
         targetTStartingPos = taskUI.transform.position + taskUI.transform.forward * 0.75f + taskUI.transform.up * 1.2f;
+        */
+
+        float highOffsetMoveable = Random.Range(-0.3f, 0.3f);
+        float highOffsetTarget = highOffsetMoveable + 0.2f;
+        float forwardOffsetMoveable = Random.Range(0.2f, 0.3f);
+        float forwardOffsetTarget = forwardOffsetMoveable + 0.1f;
+        float sideOffsetMoveable = Random.Range(-0.2f, 0.2f);
+        float sideOffsetTarget = Random.Range(-0.3f, 0.3f);
+
+        objectTStartingPos = portalExit.transform.position 
+                                + portalExit.transform.forward * forwardOffsetMoveable
+                                + portalExit.transform.up * highOffsetMoveable
+                                + portalExit.transform.right * sideOffsetMoveable;
+        targetTStartingPos = portalExit.transform.position 
+                                + portalExit.transform.forward * forwardOffsetTarget
+                                + portalExit.transform.up * highOffsetTarget
+                                + portalExit.transform.right * sideOffsetTarget;
+
         parkourCounter.Log("taskUi pos: " + taskUI.transform.position.ToString());
         parkourCounter.Log("objectTStartingPos pos: " + objectTStartingPos.ToString());
         parkourCounter.Log("targetTStartingPos pos: " + targetTStartingPos.ToString());
@@ -74,7 +102,7 @@ public class SelectionTaskMeasure : MonoBehaviour
     public void EndOneTask()
     {
         donePanel.SetActive(false);
-        
+
         // release
         isTaskEnd = true;
         isTaskStart = false;
@@ -103,15 +131,19 @@ public class SelectionTaskMeasure : MonoBehaviour
         isCountdown = true;
         completeCount += 1;
 
-        if (completeCount > 4)
+        if (completeCount > (tasksNum - 1))
         {
             taskStartPanel.SetActive(false);
+            portalEnter.SetActive(false);
+            portalExit.SetActive(false);
+            parkourCounter.DisableBlockadeForCurrentStage();
             scoreText.text = "Done Part" + part.ToString();
             part += 1;
             completeCount = 0;
         }
         else
         {
+            parkourCounter.SetTextForCurrentBlockade((tasksNum - completeCount).ToString());
             yield return new WaitForSeconds(t);
             isCountdown = false;
             startPanelText.text = "start";

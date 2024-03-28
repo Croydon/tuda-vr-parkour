@@ -87,6 +87,38 @@ public class ParkourCounter : MonoBehaviour
         tw.Close();
     }
 
+    public void DisableBlockadeForCurrentStage()
+    {
+        if (locomotionTech.stage == startBanner.name)
+        {
+            firstBanner.transform.Find("Blockade").gameObject.SetActive(false);
+        }
+        else if (locomotionTech.stage == firstBanner.name)
+        {
+            secondBanner.transform.Find("Blockade").gameObject.SetActive(false);
+        }
+        else if (locomotionTech.stage == secondBanner.name)
+        {
+            finalBanner.transform.Find("Blockade").gameObject.SetActive(false);
+        }
+    }
+
+    public void SetTextForCurrentBlockade(string txt)
+    {
+        if (locomotionTech.stage == startBanner.name)
+        {
+            firstBanner.transform.Find("Blockade/Text").GetComponent<TMP_Text>().text = txt;
+        }
+        else if (locomotionTech.stage == firstBanner.name)
+        {
+            secondBanner.transform.Find("Blockade/Text").GetComponent<TMP_Text>().text = txt;
+        }
+        else if (locomotionTech.stage == secondBanner.name)
+        {
+            finalBanner.transform.Find("Blockade/Text").GetComponent<TMP_Text>().text = txt;
+        }
+    }
+
     void Update()
     {
         if (isStageChange)
@@ -99,6 +131,7 @@ public class ParkourCounter : MonoBehaviour
                 endTextGO.SetActive(false);
                 startBanner.SetActive(false);
                 firstBanner.SetActive(true);
+                firstBanner.transform.Find("Blockade").gameObject.SetActive(true);
                 for (int i = 0; i < firstCoins.transform.childCount; i++)
                 {
                     firstCoins.transform.GetChild(i).gameObject.SetActive(true);
@@ -114,6 +147,7 @@ public class ParkourCounter : MonoBehaviour
                 firstCoins.SetActive(false);
                 objIX1.SetActive(false);
                 secondBanner.SetActive(true);
+                secondBanner.transform.Find("Blockade").gameObject.SetActive(true);
                 for (int i = 0; i < secondCoins.transform.childCount; i++)
                 {
                     for (int x = 0; x < secondCoins.transform.GetChild(i).transform.childCount; x++)
@@ -137,6 +171,7 @@ public class ParkourCounter : MonoBehaviour
                 secondCoins.SetActive(false);
                 objIX2.SetActive(false);
                 finalBanner.SetActive(true);
+                finalBanner.transform.Find("Blockade").gameObject.SetActive(true);
                 for (int i = 0; i < finalCoins.transform.childCount; i++)
                 {
                     finalCoins.transform.GetChild(i).gameObject.SetActive(true);

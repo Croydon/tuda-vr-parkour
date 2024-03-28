@@ -247,7 +247,9 @@ public class LocomotionTechnique : MonoBehaviour
             parkourCounter.Log("transform.position: " + other.transform.position.ToString());
             parkourCounter.Log("hmd.transform.position: " + hmd.transform.position.ToString());
             parkourCounter.Log("selectionTaskMeasure.taskUI.transform.position: " + selectionTaskMeasure.taskUI.transform.position.ToString());
+            selectionTaskMeasure.portalEnter.SetActive(true);
             selectionTaskMeasure.taskStartPanel.SetActive(true);
+            parkourCounter.SetTextForCurrentBlockade(selectionTaskMeasure.tasksNum.ToString());
         }
         else if (other.CompareTag("coin"))
         {
