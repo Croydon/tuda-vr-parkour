@@ -33,6 +33,9 @@ public class SelectionTaskMeasure : MonoBehaviour
 
     public int tasksNum = 5;
 
+    public MyGrab grabLeft;
+    public MyGrab grabRight;
+
 
     // Start is called before the first frame update
     void Start()
@@ -154,6 +157,9 @@ public class SelectionTaskMeasure : MonoBehaviour
             taskStartPanel.SetActive(false);
             portalEnter.SetActive(false);
             portalExit.SetActive(false);
+            // If one controller is still in the portal while the player triggers "done", it gets never reset when not called here
+            grabLeft.ExitPortal();
+            grabRight.ExitPortal();
             parkourCounter.DisableBlockadeForCurrentStage();
             parkourCounter.SetTextForCurrentBlockade(tasksNum.ToString()); // reset for next round
             scoreText.text = "Done Part" + part.ToString();
