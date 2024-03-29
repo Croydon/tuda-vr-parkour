@@ -94,11 +94,11 @@ public class SelectionTaskMeasure : MonoBehaviour
         */
 
         float highOffsetMoveable = Random.Range(-0.3f, 0.3f);
-        float highOffsetTarget = highOffsetMoveable + 0.2f;
+        float highOffsetTarget = Random.Range(-0.35f, 0.45f);
         float forwardOffsetMoveable = Random.Range(0.2f, 0.3f);
         float forwardOffsetTarget = forwardOffsetMoveable + 0.1f;
-        float sideOffsetMoveable = Random.Range(-0.2f, 0.2f);
-        float sideOffsetTarget = Random.Range(-0.3f, 0.3f);
+        float sideOffsetMoveable = Random.Range(-0.3f, 0.3f);
+        float sideOffsetTarget = Random.Range(-0.4f, 0.4f);
 
         objectTStartingPos = portalExit.transform.position 
                                 + portalExit.transform.forward * forwardOffsetMoveable
