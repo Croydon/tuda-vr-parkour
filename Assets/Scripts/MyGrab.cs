@@ -27,14 +27,15 @@ public class MyGrab : MonoBehaviour
                 isSelected = true;
                 selectedObj.transform.parent.transform.parent = this.transform;
             }
-            else if (isSelected && triggerValue < 0.95f)
-            {
-                isSelected = false;
-                selectedObj.transform.parent.transform.parent = null;
-            }
         }
 
-        if(isInPortal)
+        if (isSelected && triggerValue < 0.95f)
+        {
+            isSelected = false;
+            selectedObj.transform.parent.transform.parent = null;
+        }
+        
+        if (isInPortal)
         {
             OffsettingVisibleController();
         }
@@ -114,7 +115,7 @@ public class MyGrab : MonoBehaviour
         if (other.gameObject.CompareTag("objectT"))
         {
             isInCollider = false;
-            selectedObj = null;
+            // selectedObj = null;
         }
     }
 
