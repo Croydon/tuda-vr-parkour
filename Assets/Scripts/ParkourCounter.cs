@@ -274,7 +274,7 @@ public class ParkourCounter : MonoBehaviour
     {
         string newRecords = "loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart + "\n" +
                             "obj"  + part.ToString() + ": " + (selectionTaskMeasure.partSumTime/5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr/5).ToString("F2");
-        this.Log("stats,obj" + part.ToString() + "-sum," + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"), study_log: true);
+        this.Log("stats,obj" + part.ToString() + "-average," + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"), study_log: true);
         this.Log("stats,loco" + part.ToString() + "," + time.ToString("F1") + "," + coinsCount + "/" + coinsInPart, study_log: true);
         recordText.text = recordText.text + "\n" + newRecords;
     }
