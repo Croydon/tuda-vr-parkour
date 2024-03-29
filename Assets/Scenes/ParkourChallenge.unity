@@ -18318,6 +18318,9 @@ MonoBehaviour:
   leftVignette: {fileID: 1938089632}
   rightVignette: {fileID: 597539189}
   backgroundMusic: {fileID: 0}
+  layerTerrain:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!82 &767736113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47607,10 +47610,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 104018009614668074, guid: d6eec0397e27d024081a62f2fa0e37a0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 214038848385385591, guid: d6eec0397e27d024081a62f2fa0e37a0,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}

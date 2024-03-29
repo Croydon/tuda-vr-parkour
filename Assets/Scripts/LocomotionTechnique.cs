@@ -52,7 +52,8 @@ public class LocomotionTechnique : MonoBehaviour
     public GameObject leftVignette;
     public GameObject rightVignette;
     public GameObject backgroundMusic;
-    
+    public LayerMask layerTerrain;
+
     void Start()
     {
         maxForce = 10;
@@ -239,7 +240,24 @@ public class LocomotionTechnique : MonoBehaviour
             // rotation: facing the user's entering direction
 
             // float tempValueY = other.transform.position.y > 0 ? 12 : 0;
+
+            // Fallback, if the raycast does not hit anything, for whatever weird reason
             float tempValueY = player.transform.position.y;
+
+            // get the height of the first object under the player, which should be the floor
+            // transform.down does not exist, so invert the up vector
+            RaycastHit floor;
+            if (Physics.Raycast(player.transform.position, -player.transform.up, out floor, Mathf.Infinity, layerTerrain))
+            {
+                tempValueY = floor.point.y + 0.65f;
+            }
+            
+            // paranoia check, if we hit something unrealistic height for whatever reason
+            if(tempValueY > (player.transform.position.y + 2f))
+            {
+                tempValueY = player.transform.position.y;
+            }
+
             // Vector3 tmpTarget = new Vector3(hmd.transform.position.x, tempValueY, hmd.transform.position.z);
             Vector3 tmpTarget = new Vector3(player.transform.position.x, tempValueY, player.transform.position.z);
             selectionTaskMeasure.taskUI.transform.position = new Vector3(selectionTaskMeasure.taskUI.transform.position.x, tempValueY, selectionTaskMeasure.taskUI.transform.position.z);
