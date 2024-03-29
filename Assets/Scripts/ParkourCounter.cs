@@ -107,15 +107,15 @@ public class ParkourCounter : MonoBehaviour
     {
         if (locomotionTech.stage == startBanner.name)
         {
-            firstBanner.transform.Find("Blockade/Text").GetComponent<TMP_Text>().text = txt;
+            firstBanner.transform.Find("Blockade/Canvas/Text").GetComponent<TMP_Text>().text = txt;
         }
         else if (locomotionTech.stage == firstBanner.name)
         {
-            secondBanner.transform.Find("Blockade/Text").GetComponent<TMP_Text>().text = txt;
+            secondBanner.transform.Find("Blockade/Canvas/Text").GetComponent<TMP_Text>().text = txt;
         }
         else if (locomotionTech.stage == secondBanner.name)
         {
-            finalBanner.transform.Find("Blockade/Text").GetComponent<TMP_Text>().text = txt;
+            finalBanner.transform.Find("Blockade/Canvas/Text").GetComponent<TMP_Text>().text = txt;
         }
     }
 

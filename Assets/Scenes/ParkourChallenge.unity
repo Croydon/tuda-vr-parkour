@@ -8214,7 +8214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &393228978
 Transform:
   m_ObjectHideFlags: 0
@@ -23996,7 +23996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1020845146
 Transform:
   m_ObjectHideFlags: 0
@@ -25711,7 +25711,11 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 104018009614668074, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d6eec0397e27d024081a62f2fa0e37a0, type: 3}
 --- !u!4 &1089986897 stripped
 Transform:
@@ -27670,7 +27674,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 104018009614668074, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d6eec0397e27d024081a62f2fa0e37a0, type: 3}
 --- !u!4 &1196174334 stripped
 Transform:
@@ -33273,6 +33281,7 @@ MonoBehaviour:
   partSumErr: 0
   portalEnter: {fileID: 393228977}
   portalExit: {fileID: 1020845145}
+  tasksNum: 5
 --- !u!114 &1487194129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35831,7 +35840,11 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 104018009614668074, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d6eec0397e27d024081a62f2fa0e37a0, type: 3}
 --- !u!4 &1627774678 stripped
 Transform:
@@ -47578,11 +47591,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartBanner
       objectReference: {fileID: 0}
+    - target: {fileID: 2907087009238403248, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542770834698769828, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 104018009614668074, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 214038848385385591, guid: d6eec0397e27d024081a62f2fa0e37a0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d6eec0397e27d024081a62f2fa0e37a0, type: 3}
 --- !u!1001 &3942613374457514550
 PrefabInstance:
