@@ -51,6 +51,7 @@ public class LocomotionTechnique : MonoBehaviour
     public GameObject startingAreaRadio;
     public GameObject leftVignette;
     public GameObject rightVignette;
+    public GameObject backgroundMusic;
     
     void Start()
     {

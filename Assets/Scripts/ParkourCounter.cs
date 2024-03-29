@@ -226,6 +226,7 @@ public class ParkourCounter : MonoBehaviour
                 {
                     this.Log("start,v"+Application.version);
                     started = true;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
                 }
                 timeCounter += Time.deltaTime;
                 currentPartTimer += Time.deltaTime;
