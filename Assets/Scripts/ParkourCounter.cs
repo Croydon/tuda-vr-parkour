@@ -87,7 +87,7 @@ public class ParkourCounter : MonoBehaviour
         {
             filename += "-study";
         }
-        TextWriter tw = new StreamWriter(Application.persistentDataPath + filename + ".txt", true);
+        TextWriter tw = new StreamWriter(Application.persistentDataPath + filename + ".csv", true);
         tw.WriteLine(System.DateTime.Now + "," + message);
         tw.Close();
     }
