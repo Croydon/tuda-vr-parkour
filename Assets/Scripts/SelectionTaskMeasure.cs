@@ -70,6 +70,17 @@ public class SelectionTaskMeasure : MonoBehaviour
         donePanel.SetActive(true);
         portalExit.SetActive(true);
 
+        // If there are leftover objects from the previous task, destroy them
+        // This happens if a user starts a tasks, then leaves the task area and re-enters the are and starts a new task
+        if (objectT != null)
+        {
+            Destroy(objectT);
+        }
+        if(targerT != null)
+        {
+            Destroy(targerT);
+        }
+
         /* 
         objectTStartingPos = taskUI.transform.position + taskUI.transform.forward * 0.5f + taskUI.transform.up * 0.75f;
         targetTStartingPos = taskUI.transform.position + taskUI.transform.forward * 0.75f + taskUI.transform.up * 1.2f;
