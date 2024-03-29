@@ -51,7 +51,6 @@ public class MyGrab : MonoBehaviour
     {
         Collider other = portal.GetComponent<Collider>();
 
-
         portalOffset = other.GetComponent<TaskPortal>().linkedPortal.transform.position - other.transform.position;
         // + other.GetComponent<TaskPortal>().linkedPortal.transform.forward * 0.1f
 
@@ -81,8 +80,7 @@ public class MyGrab : MonoBehaviour
             isInPortal = true;
             portal = other.gameObject;
 
-            selectionTaskMeasure.scoreText.text = "OnTriggerEnter";
-            // offsettingVisibleController();
+            // selectionTaskMeasure.scoreText.text = "OnTriggerEnter";
         }
 
         if (other.gameObject.CompareTag("objectT"))
@@ -126,7 +124,7 @@ public class MyGrab : MonoBehaviour
         portalOffset = new Vector3(0, 0, 0);
         relativeRot = Quaternion.identity;
 
-        selectionTaskMeasure.scoreText.text = "OnTriggerExit";
+        // selectionTaskMeasure.scoreText.text = "OnTriggerExit";
 
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit before local pos: " + transform.localPosition.ToString());
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit before : local rot " + transform.localRotation.ToString());

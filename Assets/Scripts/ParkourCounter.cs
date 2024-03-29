@@ -274,8 +274,31 @@ public class ParkourCounter : MonoBehaviour
     {
         string newRecords = "loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart + "\n" +
                             "obj"  + part.ToString() + ": " + (selectionTaskMeasure.partSumTime/5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr/5).ToString("F2");
-        this.Log("stats,loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart, study_log: true);
-        this.Log("stats,obj" + part.ToString() + ": " + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"), study_log: true);
+        this.Log("stats,obj" + part.ToString() + "-sum," + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"), study_log: true);
+        this.Log("stats,loco" + part.ToString() + "," + time.ToString("F1") + "," + coinsCount + "/" + coinsInPart, study_log: true);
         recordText.text = recordText.text + "\n" + newRecords;
+    }
+
+    public int GetStageNumberByName(string stageName)
+    {
+        if(stageName == startBanner.name)
+        {
+            return 1;
+        }
+        else if(stageName == firstBanner.name)
+        {
+            return 2;
+        }
+        else if(stageName == secondBanner.name)
+        {
+            return 3;
+        }
+        else if(stageName == finalBanner.name)
+        {
+            // This is not really a stage, more in-between rounds; between final and start
+            return 4;
+        }
+        
+        return -1;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataRecording : MonoBehaviour
 {
-    // ParkourCounter parkourCounter;
+    public ParkourCounter parkourCounter;
     // SelectionTaskMeasure selectionTaskMeasure;
 
     public struct ObjectInteractionData
@@ -29,6 +29,7 @@ public class DataRecording : MonoBehaviour
     public void AddOneData(string round, int number, float taskTime, Vector3 error)
     {
         dataList.Add(new ObjectInteractionData(round, number, taskTime, error));
+        parkourCounter.Log("stats,obj" + parkourCounter.GetStageNumberByName(round) + "-" + number + "," + taskTime + "," + error.magnitude + "," + error, study_log: true);
     }
 
 
