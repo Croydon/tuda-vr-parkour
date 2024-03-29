@@ -68,6 +68,13 @@ public class SelectionTaskMeasure : MonoBehaviour
         taskTime = 0f;
         taskStartPanel.SetActive(false);
         donePanel.SetActive(true);
+
+        portalExit.transform.position = portalEnter.transform.position
+                                + portalExit.transform.forward * Random.Range(1.8f, 2.3f)
+                                + portalExit.transform.up * Random.Range(-0.1f, 0.4f)
+                                + portalExit.transform.right * Random.Range(-0.45f, 0.45f);
+
+        portalExit.transform.localRotation = Quaternion.Euler(0, Random.Range(-50f,50f), 0);
         portalExit.SetActive(true);
 
         // If there are leftover objects from the previous task, destroy them
