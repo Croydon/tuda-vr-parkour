@@ -80,9 +80,14 @@ public class ParkourCounter : MonoBehaviour
         this.selectionTaskMeasure = this.GetComponent<SelectionTaskMeasure>();
     }
 
-    public void Log(string message)
+    public void Log(string message, bool study_log = false)
     {
-        TextWriter tw = new StreamWriter(Application.persistentDataPath + "/ParkourCounterLog-" + startTimestamp + ".txt", true);
+        string filename = "/ParkourCounterLog-" + startTimestamp;
+        if (study_log)
+        {
+            filename += "-study";
+        }
+        TextWriter tw = new StreamWriter(Application.persistentDataPath + filename + ".txt", true);
         tw.WriteLine(System.DateTime.Now + "," + message);
         tw.Close();
     }
@@ -225,6 +230,7 @@ public class ParkourCounter : MonoBehaviour
                 if(started == false)
                 {
                     this.Log("start,v"+Application.version);
+                    this.Log("start,v"+Application.version, study_log: true);
                     started = true;
                     backgroundMusic.GetComponent<AudioSource>().Play();
                 }
@@ -258,6 +264,7 @@ public class ParkourCounter : MonoBehaviour
                 endTextGO.SetActive(true);
                 Debug.Log(endTextGO.GetComponent<TMP_Text>().text);
                 this.Log("end,");
+                this.Log("end,", study_log: true);
                 endSoundEffect.Play();
             }
         }       
@@ -267,8 +274,8 @@ public class ParkourCounter : MonoBehaviour
     {
         string newRecords = "loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart + "\n" +
                             "obj"  + part.ToString() + ": " + (selectionTaskMeasure.partSumTime/5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr/5).ToString("F2");
-        this.Log("stats,loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart);
-        this.Log("stats,obj" + part.ToString() + ": " + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"));
+        this.Log("stats,loco" + part.ToString() + ": " + time.ToString("F1") + ", " + coinsCount + "/" + coinsInPart, study_log: true);
+        this.Log("stats,obj" + part.ToString() + ": " + (selectionTaskMeasure.partSumTime / 5f).ToString("F1") + "," + (selectionTaskMeasure.partSumErr / 5).ToString("F2"), study_log: true);
         recordText.text = recordText.text + "\n" + newRecords;
     }
 }
