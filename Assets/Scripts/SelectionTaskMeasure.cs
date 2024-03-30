@@ -66,6 +66,18 @@ public class SelectionTaskMeasure : MonoBehaviour
         }
     }
 
+    public void DestroyTObjects()
+    {
+        if (objectT != null)
+        {
+            Destroy(objectT);
+        }
+        if (targerT != null)
+        {
+            Destroy(targerT);
+        }
+    }
+
     public void StartOneTask()
     {
         taskTime = 0f;
@@ -82,14 +94,7 @@ public class SelectionTaskMeasure : MonoBehaviour
 
         // If there are leftover objects from the previous task, destroy them
         // This happens if a user starts a tasks, then leaves the task area and re-enters the are and starts a new task
-        if (objectT != null)
-        {
-            Destroy(objectT);
-        }
-        if(targerT != null)
-        {
-            Destroy(targerT);
-        }
+        DestroyTObjects();
 
         /* 
         objectTStartingPos = taskUI.transform.position + taskUI.transform.forward * 0.5f + taskUI.transform.up * 0.75f;
@@ -140,8 +145,7 @@ public class SelectionTaskMeasure : MonoBehaviour
         dataRecording.AddOneData(parkourCounter.locomotionTech.stage.ToString(), completeCount, taskTime, manipulationError);
 
         // Debug.Log("Time: " + taskTime.ToString("F1") + "\nPrecision: " + manipulationError.magnitude.ToString("F1"));
-        Destroy(objectT);
-        Destroy(targerT);
+        DestroyTObjects();
         StartCoroutine(Countdown(3f));
     }
 
