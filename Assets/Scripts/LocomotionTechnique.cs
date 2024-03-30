@@ -51,8 +51,12 @@ public class LocomotionTechnique : MonoBehaviour
     public GameObject startingAreaRadio;
     public GameObject leftVignette;
     public GameObject rightVignette;
-    public GameObject backgroundMusic;
     public LayerMask layerTerrain;
+    public enum FlyMethode { HMD, Controller };
+    public FlyMethode flyMethode = FlyMethode.Controller;
+
+    public float force = 10.0f;
+    public float targetHeight = 10.0f;
 
     void Start()
     {
@@ -65,6 +69,27 @@ public class LocomotionTechnique : MonoBehaviour
         preventMovement = false;
         leftVignette.SetActive(true);
         rightVignette.SetActive(true);
+    }
+
+    void FixedUpdate()
+    {
+        /*float currentHeight = hmd.transform.position.y;
+
+        if (currentHeight < targetHeight)
+        {
+            // If the player is below the target height, apply an upward force
+            player.GetComponent<Rigidbody>().AddForce(Vector3.up * force);
+        }
+        else if (currentHeight > targetHeight)
+        {
+            // If the player is above the target height, apply a downward force
+            player.GetComponent<Rigidbody>().AddForce(Vector3.down * 9.8f);
+        }
+        else
+        {
+            // If the player is at the target height, apply a force to counteract gravity
+            player.GetComponent<Rigidbody>().AddForce(-Physics.gravity);
+        }*/
     }
 
     void Update()
@@ -127,12 +152,6 @@ public class LocomotionTechnique : MonoBehaviour
 
         if (leftTriggerValue > 0.95f)
         {
-            /*parkourCounter.Log("Vignette: " +leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
-            leftEye.GetComponent<OVRVignette>().VignetteFieldOfView = 80;
-            rightEye.GetComponent<OVRVignette>().VignetteFieldOfView = 80;
-            leftEye.GetComponent<OVRVignette>().enabled = !leftEye.GetComponent<OVRVignette>().enabled;
-            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;*/
-
             if (!isLeftTriggerDown)
             {
                 isLeftTriggerDown = true;
@@ -147,6 +166,7 @@ public class LocomotionTechnique : MonoBehaviour
                 }
             }
             parkourCounter.Log("hmd.transform.forward.normalized: " + hmd.transform.forward.normalized.ToString());
+            parkourCounter.Log("hmd.transform.forward.normalized: " + hmd.transform.forward.normalized.ToString());
             tmp = Vector3.Scale(hmd.transform.forward.normalized,flatVector);
             // parkourCounter.Log(tmp.ToString());
             // tmp = Vector.Multiply(hmd.transform.forward.normalized * flatVector);
@@ -158,46 +178,44 @@ public class LocomotionTechnique : MonoBehaviour
             isLeftTriggerDown = false;
         }
 
-        // parkourCounter.Log("rightTriggerValue:" + rightTriggerValue);
-        // TODO: is my right controller damaged? often times it seems to only reach a trigger value of up to ~80 while pressing it fully
-        if (rightTriggerValue > 0.75f)
+        if(flyMethode == FlyMethode.Controller)
         {
-            /*parkourCounter.Log("Vignette: " + leftEye.GetComponent<OVRVignette>().VignetteFieldOfView.ToString());
-            leftEye.GetComponent<OVRVignette>().VignetteFieldOfView = 40;
-            rightEye.GetComponent<OVRVignette>().VignetteFieldOfView = 40;
-            leftEye.GetComponent<OVRVignette>().enabled = !leftEye.GetComponent<OVRVignette>().enabled;
-            rightEye.GetComponent<OVRVignette>().enabled = !rightEye.GetComponent<OVRVignette>().enabled;*/
-
-            if (!isRightTriggerDown)
+            // parkourCounter.Log("rightTriggerValue:" + rightTriggerValue);
+            // TODO: FIXME: is my right controller damaged? often times it seems to only reach a trigger value of up to ~80 while pressing it fully
+            if (rightTriggerValue > 0.75f)
             {
-                isRightTriggerDown = true;
-                forceBuildUpFly = 0.2f;
+                if (!isRightTriggerDown)
+                {
+                    isRightTriggerDown = true;
+                    forceBuildUpFly = 0.2f;
+                }
+                else
+                {
+                    // forceBuildUpFly += 0.01f * Time.deltaTime;
+                    if (forceBuildUpFly > maxForceFly)
+                    {
+                        forceBuildUpFly = maxForceFly;
+                    }
+                }
+
+                // get the height of the headset
+
+
+                // parkourCounter.Log((upVector * forceBuildUpFly).ToString());
+                parkourCounter.Log("up vector: " + (player.transform.up.normalized * forceBuildUpFly).ToString());
+                // offset += upVector * forceBuildUpFly;
+                /*parkourCounter.Log("hmd.tansform.up:");
+                parkourCounter.Log(hmd.transform.up.normalized.ToString());
+                parkourCounter.Log("player.transform.up.normalized:");
+                parkourCounter.Log(player.transform.up.normalized.ToString());*/
+                offset += player.transform.up.normalized * forceBuildUpFly;
+                // offset += hmd.transform.up.normalized * forceBuildUpFly;
             }
             else
             {
-                // forceBuildUpFly += 0.01f * Time.deltaTime;
-                if (forceBuildUpFly > maxForceFly)
-                {
-                    forceBuildUpFly = maxForceFly;
-                }
+                isRightTriggerDown = false;
             }
-
-
-            // parkourCounter.Log((upVector * forceBuildUpFly).ToString());
-            parkourCounter.Log("up vector: " + (player.transform.up.normalized * forceBuildUpFly).ToString());
-            // offset += upVector * forceBuildUpFly;
-            /*parkourCounter.Log("hmd.tansform.up:");
-            parkourCounter.Log(hmd.transform.up.normalized.ToString());
-            parkourCounter.Log("player.transform.up.normalized:");
-            parkourCounter.Log(player.transform.up.normalized.ToString());*/
-            offset += player.transform.up.normalized * forceBuildUpFly;
-            // offset += hmd.transform.up.normalized * forceBuildUpFly;
         }
-        else
-        {
-            isRightTriggerDown = false;
-        }
-
         /*if (leftTriggerValue > 0.95f && rightTriggerValue < 0.95f)
         {
             if (isIndexTriggerDown)
