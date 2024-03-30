@@ -85,7 +85,7 @@ public class LocomotionTechnique : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (selectionTaskMeasure.grabLeft.isInPortal || selectionTaskMeasure.grabRight.isInPortal)
+        if (selectionTaskMeasure.grabLeft.isInPortal || selectionTaskMeasure.grabRight.isInPortal || preventMovement)
         {
             return;
         }
@@ -139,7 +139,7 @@ public class LocomotionTechnique : MonoBehaviour
             offset += tmp * 14f * Time.deltaTime;
             player.GetComponent<Rigidbody>().AddForce(offset, ForceMode.Impulse);
 
-            selectionTaskMeasure.scoreText.text = offset.ToString();
+            // selectionTaskMeasure.scoreText.text = offset.ToString();
             parkourCounter.Log("tmp FixedUpdate: " + tmp.ToString());
             parkourCounter.Log("offset FixedUpdate: " + offset.ToString());
         }
@@ -220,7 +220,7 @@ public class LocomotionTechnique : MonoBehaviour
 
             force = new Vector3(force.x, force.y * Time.fixedDeltaTime, force.z);
             // force.y = force.y - (Physics.gravity.y * player.GetComponent<Rigidbody>().mass);
-            selectionTaskMeasure.scoreText.text = "  " + normalizedHeight.ToString() + " - " + force.ToString();
+            // selectionTaskMeasure.scoreText.text = "  " + normalizedHeight.ToString() + " - " + force.ToString();
 
             // Log force
             parkourCounter.Log("force: " + force.ToString());
@@ -253,6 +253,7 @@ public class LocomotionTechnique : MonoBehaviour
             if (parkourCounter.parkourStart)
             {
                 player.transform.position = parkourCounter.currentRespawnPos;
+                preventMovement = false;
             }
         }
         if (OVRInput.Get(OVRInput.Button.One))
@@ -270,7 +271,7 @@ public class LocomotionTechnique : MonoBehaviour
         leftTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, leftController); 
         rightTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, rightController);
 
-        if (preventMovement == true) { return; }
+        if (preventMovement) { return; }
 
         /*if (leftTriggerValue > 0.95f && rightTriggerValue > 0.95f)
         {
@@ -462,6 +463,12 @@ public class LocomotionTechnique : MonoBehaviour
             selectionTaskMeasure.portalEnter.SetActive(true);
             selectionTaskMeasure.taskStartPanel.SetActive(true);
             parkourCounter.SetTextForCurrentBlockade(selectionTaskMeasure.tasksNum.ToString());
+
+            preventMovement = true;
+            Vector3 newPlayerPos = selectionTaskMeasure.portalEnter.transform.position;
+            newPlayerPos = newPlayerPos + (-1.4f * selectionTaskMeasure.portalEnter.transform.forward);
+            newPlayerPos = new Vector3(newPlayerPos.x, tempValueY, newPlayerPos.z);
+            player.transform.position = newPlayerPos;
         }
         else if (other.CompareTag("coin"))
         {

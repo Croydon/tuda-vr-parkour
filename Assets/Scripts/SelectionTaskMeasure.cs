@@ -166,6 +166,7 @@ public class SelectionTaskMeasure : MonoBehaviour
             grabRight.ExitPortal();
             parkourCounter.DisableBlockadeForCurrentStage();
             parkourCounter.SetTextForCurrentBlockade(tasksNum.ToString()); // reset for next round
+            parkourCounter.locomotionTech.preventMovement = false;
             scoreText.text = "Done Part" + part.ToString();
             part += 1;
             completeCount = 0;

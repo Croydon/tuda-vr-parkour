@@ -74,9 +74,8 @@ public class MyGrab : MonoBehaviour
             // Only if there is an active exit portal, the controllers should be offsetted
             if (!other.GetComponent<TaskPortal>().linkedPortal.activeSelf) { return; }
 
-            // TODO: FIXME: When both controllers where in the portal, one gets pulled out, the movement is currently unblocked
             // using transform.parent instead of transform does not work unfortunately
-            locomotionTech.preventMovement = true;
+
             isInPortal = true;
             portal = other.gameObject;
 
@@ -132,7 +131,5 @@ public class MyGrab : MonoBehaviour
         transform.localRotation = Quaternion.identity;
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit local pos: " + transform.localPosition.ToString());
         selectionTaskMeasure.parkourCounter.Log("OnTriggerExit: local rot " + transform.localRotation.ToString());
-
-        locomotionTech.preventMovement = false;
     }
 }
