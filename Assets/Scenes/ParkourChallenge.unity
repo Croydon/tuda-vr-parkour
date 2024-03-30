@@ -17284,6 +17284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4636666552361120618, guid: 0e61ef2a51536d542b1b5996adb3c797,
         type: 3}
+      propertyPath: applyWith
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120618, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
       propertyPath: velocitySource
       value: 
       objectReference: {fileID: 1819617622}
@@ -18643,10 +18648,13 @@ MonoBehaviour:
   startingAreaRadio: {fileID: 155844093}
   leftVignette: {fileID: 1938089632}
   rightVignette: {fileID: 597539189}
-  backgroundMusic: {fileID: 0}
   layerTerrain:
     serializedVersion: 2
     m_Bits: 1
+  flyMethode: 0
+  force: 10
+  targetHeight: 10
+  rightHand: {fileID: 872391739}
 --- !u!82 &767736113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25259,6 +25267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: duration
       value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636666552361120618, guid: 0e61ef2a51536d542b1b5996adb3c797,
+        type: 3}
+      propertyPath: applyWith
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4636666552361120618, guid: 0e61ef2a51536d542b1b5996adb3c797,
         type: 3}

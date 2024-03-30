@@ -53,10 +53,22 @@ public class LocomotionTechnique : MonoBehaviour
     public GameObject rightVignette;
     public LayerMask layerTerrain;
     public enum FlyMethode { HMD, Controller };
-    public FlyMethode flyMethode = FlyMethode.Controller;
+    public FlyMethode flyMethode = FlyMethode.HMD;
 
     public float force = 10.0f;
     public float targetHeight = 10.0f;
+    // private float minHMDHeight = 1.056945f;
+    //private float maxHMDHeight = 1.056945f;
+
+    //private float minHMDLocalHeight = 1.1f;
+    private float minHMDLocalHeight;
+    //private float maxHMDLocalHeight = 1.7f;
+    private float maxHMDLocalHeight;
+
+    public GameObject rightHand;
+
+    private float reducingHorizontalVelocityTimeMax = 8f;
+    private float reducingHorizontalVelocityTimer = 8f;
 
     void Start()
     {
@@ -73,6 +85,13 @@ public class LocomotionTechnique : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (selectionTaskMeasure.grabLeft.isInPortal || selectionTaskMeasure.grabRight.isInPortal)
+        {
+            return;
+        }
+
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+
         /*float currentHeight = hmd.transform.position.y;
 
         if (currentHeight < targetHeight)
@@ -90,6 +109,139 @@ public class LocomotionTechnique : MonoBehaviour
             // If the player is at the target height, apply a force to counteract gravity
             player.GetComponent<Rigidbody>().AddForce(-Physics.gravity);
         }*/
+
+
+        if (isLeftTriggerDown)
+        {
+            // forceBuildUp = -1.3f * Physics.gravity * Time.deltaTime;
+            /*
+            if (!isLeftTriggerDown)
+            {
+                isLeftTriggerDown = true;
+
+            }
+            else
+            {
+                // forceBuildUp += 0.01f * Time.deltaTime;
+                if (forceBuildUp > maxForce)
+                {
+                    forceBuildUp = maxForce;
+                }
+            }*/
+
+            tmp = Vector3.Scale(hmd.transform.forward.normalized, flatVector);
+            //offset = Vector3.Scale(tmp, -1.3f * Physics.gravity * Time.deltaTime);
+
+            // parkourCounter.Log(tmp.ToString());
+            // tmp = Vector.Multiply(hmd.transform.forward.normalized * flatVector);
+
+            // TODO: FIXME: Temporary disabled, trying moving to FixedUpdate()
+            offset += tmp * 14f * Time.deltaTime;
+            player.GetComponent<Rigidbody>().AddForce(offset, ForceMode.Impulse);
+
+            selectionTaskMeasure.scoreText.text = offset.ToString();
+            parkourCounter.Log("tmp FixedUpdate: " + tmp.ToString());
+            parkourCounter.Log("offset FixedUpdate: " + offset.ToString());
+        }
+        else 
+        {
+            if (reducingHorizontalVelocityTimer > 0f)
+            {
+                float t = (reducingHorizontalVelocityTimeMax - reducingHorizontalVelocityTimer) / reducingHorizontalVelocityTimeMax;
+                Vector3 newVelocity = Vector3.Lerp(rb.velocity, new Vector3(0, rb.velocity.y, 0), t);
+                parkourCounter.Log("reducingHorizontalVelocityTimer FixedUpdate: " + reducingHorizontalVelocityTimer.ToString());
+                parkourCounter.Log("t FixedUpdate: " + t.ToString());
+                parkourCounter.Log("Velocity FixedUpdate: " + rb.velocity.ToString());
+                parkourCounter.Log("newVelocity FixedUpdate: " + newVelocity.ToString());
+                rb.velocity = newVelocity;
+                reducingHorizontalVelocityTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            }
+        }
+        
+        if (flyMethode == FlyMethode.HMD && minHMDLocalHeight != 0.0f && maxHMDLocalHeight != 0.0f) // && rightTriggerValue > 0.75f
+        {
+            // Fallback, if the raycast does not hit anything, for whatever weird reason
+            float tempValueY = hmd.transform.position.y + 2f;
+
+            // parkourCounter.Log("hmd.transform.position.y: " + hmd.transform.position.y.ToString() + "");
+            // parkourCounter.Log("hmd.transform.localPosition.y: " + hmd.transform.localPosition.y.ToString() + "");
+            // get the height of the first object under the player, which should be the floor
+            // transform.down does not exist, so invert the up vector
+            RaycastHit floor;
+            float floorY = 0f;
+            if (Physics.Raycast(player.transform.position, -player.transform.up, out floor, Mathf.Infinity, layerTerrain))
+            {
+                tempValueY = floor.point.y + 0.65f;
+                floorY = floor.point.y;
+            }
+
+
+            // Move player ridigbody to the hmd y position but leave the rest unchanged
+            // layer.GetComponent<Rigidbody>().MovePosition(new Vector3(player.transform.position.x, tempValueY, player.transform.position.z));
+
+            // Treat minHMDLocalHeight as 0 and maxHMDLocalHeight as 1
+            // Interpolate the currrent hmd.transform.localPosition.y to the range of 0 to 1
+            // Calculate a force. At the value of 0.5 it should apply Physics.Gravity so that the height stays the same, for lower then 0.5 it should become less until the applied force is zero and for higher than 0.5 it should become more until the applied force is the double of Physics.Gravity
+            // Interpolate the current HMD local position to a range of 0 to 1
+
+            // float normalizedHeight = Mathf.InverseLerp(minHMDLocalHeight, maxHMDLocalHeight, hmd.transform.localPosition.y);
+            float relHeight = rightHand.transform.position.y - player.transform.position.y;
+            float normalizedHeight = Mathf.InverseLerp(minHMDLocalHeight, maxHMDLocalHeight, relHeight);
+
+            // Log noramlizedHeight
+            parkourCounter.Log("normalizedHeight: " + normalizedHeight.ToString());
+
+            Vector3 force;
+            // Make it more likeley to being able to hold the height
+            if (normalizedHeight > 0.45 && normalizedHeight < 0.56)
+            {
+                normalizedHeight = 0.5f;
+            }
+
+
+            // force = Vector3.Lerp(Vector3.zero, -1.25f * Physics.gravity, normalizedHeight);
+            if (normalizedHeight < 0.5f)
+            {
+                // If normalizedHeight is less than 0.5, interpolate between 0 and -Physics.gravity
+                force = Vector3.Lerp(Vector3.zero, -Physics.gravity, normalizedHeight * 2);
+            }
+            else
+            {
+                // If normalizedHeight is greater than or equal to 0.5, interpolate between -Physics.gravity and -2 * Physics.gravity
+                force = Vector3.Lerp(-Physics.gravity, -1.45f * Physics.gravity, (normalizedHeight - 0.5f) * 2);
+            }
+
+            // Vector3 forceBuildUpFlyVector = new Vector3(0, 10f * Time.deltaTime, 0);
+            // force = Vector3.Lerp(Vector3.zero, forceBuildUpFlyVector, normalizedHeight);
+
+            force = new Vector3(force.x, force.y * Time.fixedDeltaTime, force.z);
+            // force.y = force.y - (Physics.gravity.y * player.GetComponent<Rigidbody>().mass);
+            selectionTaskMeasure.scoreText.text = "  " + normalizedHeight.ToString() + " - " + force.ToString();
+
+            // Log force
+            parkourCounter.Log("force: " + force.ToString());
+
+            
+            if (normalizedHeight == 0.5f)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            }
+            else if(force.y > 0f)
+            {
+                // Apply the force to the Rigidbody
+                // player.GetComponent<Rigidbody>().AddForce(force, ForceMode.Acceleration);
+                rb.AddForce(force, ForceMode.Impulse);
+            }
+
+            // height = Vector3.Lerp(3f, 10f, normalizedHeight);
+            float height = 7f * normalizedHeight + floorY;
+            parkourCounter.Log("height: " + height.ToString());
+            // player.transform.position = new Vector3(player.transform.position.x, height, player.transform.position.z);
+        }
     }
 
     void Update()
@@ -103,7 +255,16 @@ public class LocomotionTechnique : MonoBehaviour
                 player.transform.position = parkourCounter.currentRespawnPos;
             }
         }
-
+        if (OVRInput.Get(OVRInput.Button.One))
+        {
+            // minHMDLocalHeight = hmd.transform.localPosition.y;
+            minHMDLocalHeight = rightHand.transform.position.y - player.transform.position.y;
+        }
+        if (OVRInput.Get(OVRInput.Button.Three))
+        {
+            // maxHMDLocalHeight = hmd.transform.localPosition.y;
+            maxHMDLocalHeight = rightHand.transform.position.y - player.transform.position.y;
+        }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Please implement your LOCOMOTION TECHNIQUE in this script :D.
         leftTriggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, leftController); 
@@ -166,15 +327,20 @@ public class LocomotionTechnique : MonoBehaviour
                 }
             }
             parkourCounter.Log("hmd.transform.forward.normalized: " + hmd.transform.forward.normalized.ToString());
-            parkourCounter.Log("hmd.transform.forward.normalized: " + hmd.transform.forward.normalized.ToString());
             tmp = Vector3.Scale(hmd.transform.forward.normalized,flatVector);
             // parkourCounter.Log(tmp.ToString());
             // tmp = Vector.Multiply(hmd.transform.forward.normalized * flatVector);
-            offset += tmp * forceBuildUp;
+
+            // TODO: FIXME: Temporary disabled, trying moving to FixedUpdate()
+            // offset += tmp * forceBuildUp;
 
         }
         else
         {
+            if(isLeftTriggerDown)
+            {
+                reducingHorizontalVelocityTimer = reducingHorizontalVelocityTimeMax;
+            }
             isLeftTriggerDown = false;
         }
 
@@ -238,6 +404,14 @@ public class LocomotionTechnique : MonoBehaviour
         // Would need time to figure out meanigfull values
         // player.GetComponent<Rigidbody>().AddForce(offset, ForceMode.Acceleration);
 
+        if(rightTriggerValue > 0.75f)
+        {
+            parkourCounter.Log("triggered hmd.transform.position.y: " + hmd.transform.position.y.ToString() + "");
+            parkourCounter.Log("triggered hmd.transform.localPosition.y: " + hmd.transform.localPosition.y.ToString() + "");
+            parkourCounter.Log("triggered rightHand.transform.localPosition.y: " + rightHand.transform.localPosition.y.ToString() + "");
+            parkourCounter.Log("triggered rightHand.transform.position.y: " + rightHand.transform.position.y.ToString() + "");
+            parkourCounter.Log("triggered player.transform.position.y: " + player.transform.position.y.ToString() + "");
+        }
     }
 
     void OnTriggerEnter(Collider other)
