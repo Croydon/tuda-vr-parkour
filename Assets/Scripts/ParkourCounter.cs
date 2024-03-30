@@ -260,6 +260,8 @@ public class ParkourCounter : MonoBehaviour
                 recordTextGO.SetActive(false);
 
                 selectionTaskMeasure.DestroyTObjects();
+                selectionTaskMeasure.grabLeft.ExitPortal();
+                selectionTaskMeasure.grabRight.ExitPortal();
                 selectionTaskMeasure.taskUI.SetActive(false);
 
                 endTextGO.GetComponent<TMP_Text>().text = "Parkour Finished!\n" + recordText.text +
