@@ -465,6 +465,7 @@ public class LocomotionTechnique : MonoBehaviour
             parkourCounter.SetTextForCurrentBlockade(selectionTaskMeasure.tasksNum.ToString());
 
             preventMovement = true;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Vector3 newPlayerPos = selectionTaskMeasure.portalEnter.transform.position;
             newPlayerPos = newPlayerPos + (-1.4f * selectionTaskMeasure.portalEnter.transform.forward);
             newPlayerPos = new Vector3(newPlayerPos.x, tempValueY, newPlayerPos.z);
