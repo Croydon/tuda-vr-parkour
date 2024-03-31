@@ -55,6 +55,7 @@ public class ParkourCounter : MonoBehaviour
     public GameObject objectInteractionText;
     public AudioSource backgroundMusic;
     public AudioSource endSoundEffect;
+    public AudioSource goSoundEffect;
     public SelectionTaskMeasure selectionTaskMeasure;
     public bool devMode = false;
 
@@ -155,6 +156,7 @@ public class ParkourCounter : MonoBehaviour
                 objIX1.SetActive(true);
                 this.GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX1.transform.position;
                 currentRespawnPos = start2FirstRespawn.position;
+                goSoundEffect.Play();
             }
             else if (locomotionTech.stage == firstBanner.name)
             {
