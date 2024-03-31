@@ -464,10 +464,12 @@ public class LocomotionTechnique : MonoBehaviour
             selectionTaskMeasure.taskStartPanel.SetActive(true);
             parkourCounter.SetTextForCurrentBlockade(selectionTaskMeasure.tasksNum.ToString());
 
+            // teleport / place player directly in front of the portal, prevent moving and take away all velocity
             preventMovement = true;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Vector3 newPlayerPos = selectionTaskMeasure.portalEnter.transform.position;
-            newPlayerPos = newPlayerPos + (-1.4f * selectionTaskMeasure.portalEnter.transform.forward);
+            // the player object has a radius of 0.5f, the distance shouldn't be smaller or player might glitch inside the portal or bounce back from the portal
+            newPlayerPos = newPlayerPos + (-0.53f * selectionTaskMeasure.portalEnter.transform.forward);
             newPlayerPos = new Vector3(newPlayerPos.x, tempValueY, newPlayerPos.z);
             player.transform.position = newPlayerPos;
         }
