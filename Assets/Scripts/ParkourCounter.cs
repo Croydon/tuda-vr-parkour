@@ -52,9 +52,11 @@ public class ParkourCounter : MonoBehaviour
     public GameObject coinTextGO;
     public GameObject recordTextGO;
     public GameObject endTextGO;
+    public GameObject objectInteractionText;
     public AudioSource backgroundMusic;
     public AudioSource endSoundEffect;
     public SelectionTaskMeasure selectionTaskMeasure;
+    public bool devMode = false;
 
     void Start()
     {
@@ -78,6 +80,14 @@ public class ParkourCounter : MonoBehaviour
         parkourStart = false;
         endTextGO.SetActive(false);
         this.selectionTaskMeasure = this.GetComponent<SelectionTaskMeasure>();
+
+        if(!devMode)
+        {
+            coinText.transform.position = recordTextGO.transform.position;
+            recordTextGO.SetActive(false);
+            objectInteractionText.SetActive(false);
+
+        }
     }
 
     public void Log(string message, bool study_log = false)
@@ -200,8 +210,11 @@ public class ParkourCounter : MonoBehaviour
                 part3Count = coinCount - previousCoinCount;
                 previousCoinCount = coinCount;
                 UpdateRecordText(3, part3Time, part3Count, 23);
-                endTextGO.GetComponent<TMP_Text>().text = "Round finished. Keep going!";
-                endTextGO.SetActive(true);
+                if(devMode)
+                {
+                    endTextGO.GetComponent<TMP_Text>().text = "Round finished. Keep going!";
+                    endTextGO.SetActive(true);
+                }
                 startBanner.SetActive(true);
 
                 // Re-enable all coins, specifically collected coins
