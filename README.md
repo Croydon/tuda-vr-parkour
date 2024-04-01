@@ -3,7 +3,7 @@
 ## Requirements
 
   * Unity 2022.3.19f1
-  * Meta Quest 2 (Quest 3 might work with some small build settings adjustments)
+  * Meta Quest 2 (Quest 3 is completely untested and might not work)
 
 
 ## Additional Credits
