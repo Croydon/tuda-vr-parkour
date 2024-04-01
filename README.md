@@ -6,6 +6,29 @@
   * Meta Quest 2 (Quest 3 is completely untested and might not work)
 
 
+## How To Play
+
+  * You need to configure flying first (see `Control`)
+  * You are supposed to stand in one place
+  * You are rotate freely on your position
+  * Small steps in some directions to reach something a bit better should be fine, but if you are leaving your original position too much you need to re-set your position with the Oculus button. Otherwise the physical and virtual player position do not match anymore perfectly and collecting coins can become a problem.
+  * Goals; you have 10 minutes to:
+    * Do as many rounds as possible
+    * Collect as many coins as possible
+    * Perform the object positioning tasks as preceise as possible
+
+
+## Control
+
+  * Before flying is enabled it needs to be configured
+    * Put your right arm with the controler as far up as you can, then press `X`
+    * Then, your right arm with the controler as far down as you can (while still standing straight), then press `A`
+    * If done both, you should be able to fly up, down or hold your position, depending on the height of your right controller (or hand for that matter if hand-tracking is enabled, but I don't recommend that)
+  * Press the `Left Trigger Button` to move in the horizontol direction of where you are looking at
+  * `B` or `Y` to reset to last save point, for cases when the player flew/ran complete off the road and does not find a quick way back
+  * If you moved too much physically away from your original position, use the `Oculus` button to return to the logical position of your player object. You might notice that this is necessary, if you having troubles collection coins that you should be able to get or if you are standing far too away from the portals.
+
+
 ## Additional Credits
 
   * `Assets/HQ Explisions Pack Free/`: [HQ Explosions Pack FREE](https://assetstore.unity.com/packages/vfx/particles/fire-explosions/hq-explosions-pack-free-263326)
