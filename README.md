@@ -10,7 +10,7 @@
 
   * You need to configure flying first (see `Control`)
   * You are supposed to stand in one place
-  * You are rotate freely on your position
+  * You can rotate freely on your position
   * Small steps in some directions to reach something a bit better should be fine, but if you are leaving your original position too much you need to re-set your position with the Oculus button. Otherwise the physical and virtual player position do not match anymore perfectly and collecting coins can become a problem.
   * Goals; you have 10 minutes to:
     * Do as many rounds as possible
