@@ -6,6 +6,11 @@
   * Meta Quest 2 (Quest 3 is completely untested and might not work)
 
 
+## Video Walkthrough
+
+<a href="https://www.youtube.com/watch?v=WJ9H1r-tjjA" target="_blank"><img src="https://img.youtube.com/vi/WJ9H1r-tjjA/0.jpg" alt="VR Walkthrough Video with the view of inside VR and outside" width="240" height="180" border="10"></a>
+
+
 ## How To Play
 
   * You need to configure flying first (see `Control`)
