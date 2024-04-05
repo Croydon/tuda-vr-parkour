@@ -26,7 +26,7 @@
 ## Control
 
   * Before flying is enabled it needs to be configured
-    * Put your right hand with the controler as far up as you can, then press `X`
+    * Put your right hand with the controller up as far up as you can, then press `X`
     * Then, put your right hand with the controler as far down as you can (while still standing straight), then press `A`
     * If done both, you should be able to fly up, down or hold your position, depending on the height of your right controller (or hand for that matter if hand-tracking is enabled, but I don't recommend that)
   * Press the `Left Trigger Button` to move in the horizontol direction of where you are looking at
