@@ -10,7 +10,7 @@
 
   * A Meta Quest device
     * Meta Quest 2 is tested for all versions <= 0.10.0
-    * Meta Quest 3 is testen for all versions >= 0.10.0
+    * Meta Quest 3 is tested for all versions >= 0.10.0
 
 
 ## Video Walkthrough
