@@ -1,9 +1,16 @@
-# Unity VR project for Meta Quest 2: Study Participant 42
+# Unity VR project for Meta Quest: Study Participant 42
 
 ## Requirements
 
+### Build Requirements
+
   * Unity 2022.3.19f1
-  * Meta Quest 2 (Quest 3 is completely untested and might not work)
+
+### Runtime Requirements
+
+  * A Meta Quest device
+    * Meta Quest 2 is tested for all versions <= 0.10.0
+    * Meta Quest 3 is testen for all versions >= 0.10.0
 
 
 ## Video Walkthrough
